@@ -1,0 +1,19 @@
+[
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to My Visual Blog - R for Data Science and Analytics",
+    "description": "Welcome to my Visual blog, VizBlog. I hope you enjoy \nbrowsing the projects!",
+    "author": [
+      {
+        "name": "Manmit Singh, SMU Master of IT in Business student",
+        "url": "https://www.linkedin.com/in/smitman/"
+      }
+    ],
+    "date": "2021-05-23",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-05-28T14:28:30+08:00",
+    "input_file": "welcome.knit.md"
+  }
+]

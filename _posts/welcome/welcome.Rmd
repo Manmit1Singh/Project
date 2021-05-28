@@ -1,0 +1,26 @@
+---
+title: "Welcome to My Visual Blog - R for Data Science and Analytics"
+description: |
+  Welcome to my Visual blog, VizBlog. I hope you enjoy 
+  browsing the projects!
+author:
+  - name: Manmit Singh, SMU Master of IT in Business student
+    url: https://www.linkedin.com/in/smitman/
+    affiliation: School of Computing and Information Systems, SMU 
+    affiliation_url: https://scis.smu.edu.sg/
+date: 05-23-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+
+
