@@ -68,8 +68,6 @@ The dashboard can be viewed [here](https://public.tableau.com/views/Final__Data_
 
 ![](dashboard_f.jpg)
 
-
-
 ### 5. Derived Insights for merchandise trade between Singapore and its top 6 trading partners between 2019 and 2020 (inclusive)
 
 - Overall, Covid-19 had little impact on Singapore’s trade with majority performance being stronger compared to Q1 2019. 
@@ -82,9 +80,7 @@ The dashboard can be viewed [here](https://public.tableau.com/views/Final__Data_
 
 - Post Covid-19 Global Lockdowns, only trade with US decreased across exports and imports.
 
-- Post Covid-19 Global Lockdowns, Q4 2020 import fluctuated at a wider gap compared to exports. Growth fluctuations for import was between -9% to 79%, while exports fluctuated between -4% to 11%.
-
-- In Q4 2020, Singapore was importing approximately the same value in merchandise from Taiwan and US.
+test for change
 
 
 
