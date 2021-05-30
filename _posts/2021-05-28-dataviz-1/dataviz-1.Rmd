@@ -64,7 +64,7 @@ S/N| Action                        | Step                       |
 
 
 ### 4. Dashboard
-The dashboard can be viewed [here](https://public.tableau.com/views/Final__Data_vizAssingment1_Final_vF/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link)
+The dashboard can be viewed [here](https://public.tableau.com/views/Final__Data_vizAssingment1_Final_vF/Dashboard1_1?:language=en-GB&:display_count=n&:origin=viz_share_link)
 
 ![](dashboard_f.jpg)
 
