@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>DataViz 2</title>
+
+  <meta property="description" itemprop="description" content="Data Visualisation Assignment 2 - June 2021"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-06-18"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-06-18"/>
+  <meta name="article:author" content="Manmit"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="DataViz 2"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Data Visualisation Assignment 2 - June 2021"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="DataViz 2"/>
+  <meta property="twitter:description" content="Data Visualisation Assignment 2 - June 2021"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["DataViz 2"]},{"type":"character","attributes":{},"value":["Data Visualisation Assignment 2 - June 2021\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Manmit"]}]}]},{"type":"character","attributes":{},"value":["06-18-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["1.jpg","Dash.jpg","dataviz-2_files/anchor-4.2.2/anchor.min.js","dataviz-2_files/bowser-1.9.3/bowser.min.js","dataviz-2_files/distill-2.2.21/template.v2.js","dataviz-2_files/header-attrs-2.8/header-attrs.js","dataviz-2_files/jquery-1.11.3/jquery.min.js","dataviz-2_files/popper-2.6.0/popper.min.js","dataviz-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-2_files/tippy-6.2.7/tippy-light-border.css","dataviz-2_files/tippy-6.2.7/tippy.css","dataviz-2_files/tippy-6.2.7/tippy.umd.min.js","dataviz-2_files/webcomponents-2.0.0/webcomponents.js","image1.jpg","p1.jpg","p10.jpg","p11.jpg","p12.jpg","p13.jpg","p14.jpg","p15.jpg","p16.jpg","p17.jpg","p18.jpg","p19.jpg","p2.jpg","p20.jpg","p21.jpg","p22.jpg","p23.jpg","p24.jpg","p25.jpg","p26.jpg","p27.jpg","p28.jpg","p29.jpg","p3.jpg","p30.jpg","p31.jpg","p32.jpg","p33.jpg","p34.jpg","p35.jpg","p36.jpg","p37.jpg","p38.jpg","p39.jpg","p4.jpg","p40.jpg","p5.jpg","p6.jpg","p7.jpg","p8.jpg","p9.jpg","Sketch.jpg"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="dataviz-2_files/header-attrs-2.8/header-attrs.js"></script>
+  <script src="dataviz-2_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="dataviz-2_files/popper-2.6.0/popper.min.js"></script>
+  <link href="dataviz-2_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="dataviz-2_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="dataviz-2_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="dataviz-2_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="dataviz-2_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="dataviz-2_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="dataviz-2_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"DataViz 2","description":"Data Visualisation Assignment 2 - June 2021","authors":[{"author":"Manmit","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-18T00:00:00.000+08:00","citationText":"Manmit, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>DataViz 2</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Data Visualisation Assignment 2 - June 2021</p></p>
+</div>
+
+<div class="d-byline">
+  Manmit  
+  
+<br/>06-18-2021
+</div>
+
+<div class="d-article">
+<h3 id="critique-of-visualisation">1. Critique of Visualisation</h3>
+<p><img src="image1.jpg" /></p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 60%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>S/N</th>
+<th>Clarity Critique</th>
+<th>Suggestion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>i.</td>
+<td><em>Chart has no title</em> - It is not clear what the reader should take away from the chart as there is no title to guide the reader through the story and the timeframe for the data.</td>
+<td>Insert a chart title to indicate what the chart is about. For example, “Total Trade with partners from year to year”.</td>
+</tr>
+<tr class="even">
+<td>ii.</td>
+<td><em>Axis labelling</em> - The axis does not state the units (e.g S$). This is mis-leading when referencing the circles. For example, Taiwan shows S$75.2Bil, but it is not located anywhere near the 70 mark on both axes.</td>
+<td>Label the axes with the units. In fact, the whole chart needs to be reworked to make it interactive. In this way the reader can interact with the chat to gather insights on the import and export trade values.</td>
+</tr>
+<tr class="odd">
+<td>iii.</td>
+<td><em>Differentiating by Net Importers/Exporters</em> - While the idea is there, it is not clear at first look what it means for circles that are in both halves. In addition, the note below the chart requires effort to understand, making the chart use less visuals and more words for explanation. The small white circle in the centre is supposed to indicate if the partner is a net importer or exporter. This creates a confusion as the big circle is already within the net exporters/importers half of the chart.</td>
+<td>Divide the chart into quadrants instead. Break the quadrants up into High Export High Import etc.. This is useful for the reader to understand both the import and export of the partner in-relation to one another. High and low can be measured against the average. In addition, supplement a bubble plot with a bar chart to indicate the export/import values and the difference for users to understand net imports/exporters clearly. There is no requirement to pack everything into a single chart especially if it compromises clarity.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 60%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>S/N</th>
+<th>Aesthetics Critique</th>
+<th>Suggestion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>i.</td>
+<td><em>Overlap of circles keeps you guessing what it really looks like</em> - The circles overlap which is fine, but because of no opacity, the readers have to form an image of the full circle in their mind and figure out how it really compares. This is not aesthetically pleasing and unnecessary work for the reader.</td>
+<td>Use a degree of opacity to show the full circle.</td>
+</tr>
+<tr class="even">
+<td>ii.</td>
+<td><em>Too many colours</em> - The chart does not look professional and it is a reflection of the author’s lack of clarity for what the chart is supposed to represent. Use colours to highlight the import aspects of the chart instead of colouring it everywhere. In addition, some colours look similar (EU and Thailand).</td>
+<td>When using the quadrant approach above (as stated in Clarity), use colours to indicate which quadrant the countries fall in to different them from one another.</td>
+</tr>
+<tr class="odd">
+<td>iii.</td>
+<td><em>Information flow, font size and use of circles</em> - The information flow starts with details at the top (chart) before going broad to explain what it is about. It is not pleasing to read and refer to. The font used for the information below the chart is thin and small and hence challenging to read. In addition, some font is in caps (e.g TOP NET IMPORTER). This is aesthetically annoying. Lastly, author should be careful when using circles, as looking at big and small circles can distort the reader’s visual of how big/small the circles are.</td>
+<td>When sharing information, start with the broad picture above before going into details (the chart). Use a standard font across and avoid caps. Do not use big and small white circles together. Re-work the chart and divide it into two interactive charts as shown in the proposed design below.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proposed-design">2. Proposed Design</h3>
+<p><img src="Sketch.jpg" /></p>
+<h4 id="advantages-of-proposed-design">2.1 Advantages of Proposed Design</h4>
+<ul>
+<li>Structured approach to story-telling: Each of the charts have a purpose and story to tell. The left chart shows how the partners match up against each other both in terms of total and individual (export/import) trade value. The chart on the right provides granularity on the figures. The story is easy to retain with the animation.</li>
+<li>Interactive Charts: The charts are interactive which gives the users the dexterity to perform their own analysis. For example, the user can filter by partner and date. In addition, the animation feature that was added provides a visualisation through time to understand the changes better.</li>
+<li>Granular details: The charts highlight the key parts that the reader should read. For example, the additional of quadrant and related colours indicate the importance of some trading partners. In addition, for the chart of the right, the tooltip provides details of the difference in trade for each partner’s export and import.</li>
+<li>Aesthetically pleasing: The simple but purposeful charts invite the users to explore the charts and related data.</li>
+<li>Labels: The chart is well labelled and provides direction for the user. It leaves no room for ambiguity.</li>
+</ul>
+<h3 id="data-visualisation">3. Data Visualisation</h3>
+<p>The dashboard can be viewed <a href="https://public.tableau.com/views/Data-Viz2-SingaporesTradewithtop10partners/Singaporestradingpartners?:language=en-GB&amp;:display_count=n&amp;:origin=viz_share_link">here</a>.</p>
+<p><img src="Dash.jpg" /></p>
+<h3 id="data-preparation-step-by-step-guide">4. Data Preparation step-by-step guide</h3>
+<ol type="1">
+<li>Prepare Data</li>
+</ol>
+<ol type="a">
+<li><p>Download Merchandise Trade by Region/Market from the Singapore Department of Statistics <a href="https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data" class="uri">https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data</a> .</p></li>
+<li><p>Within the downloaded workbook, create duplicate T1 and T2 excel sheets and rename them “Imports Tableau” and “Exports Tableau”. These worksheets will be used to prepare the necessary data for the visualisation. <img src="p1.jpg" /></p></li>
+<li><p>Steps for both “Imports Tableau” and “Exports Tableau: As part of data preparation, remove data outside period January 2011 – December 2020. In addition, only keep data for the following 10 partners (Thailand, Indonesia, Hong Kong, Japan, Korea, Taiwan, US, China, Malaysia, and EU). Remove descriptive text.</p></li>
+<li><p>Convert European Union figures from Million Dollars to Thousand dollars. Multiply the values by 1000 and paste As Value in the row. <img src="p2.jpg" /></p></li>
+</ol>
+<ol start="2" type="1">
+<li>Data Cleaning Steps for both “Imports Tableau” and “Exports Tableau</li>
+</ol>
+<ol type="a">
+<li><p>Check fields for missing and null values. No missing or null values.</p></li>
+<li><p>Change headers from “Variables” to “Partners” <img src="p3.jpg" /></p></li>
+<li><p>Change values by multiplying all values by 1000 to get values in its raw form. It will be easier to deal with within Tableau.</p></li>
+<li><p>Copy Imports Table and transpose paste in new Worksheet. Create a column header called “Import/Export”. Label the rows as “Import. Re-name new Worksheet “Combine Import - Export”</p></li>
+<li><p>Copy Exports Table from “Exports Tableau” and transpose paste below Import table in “Combine Import - Export” worksheet. In Import/Export Column, name each the row as Export.</p></li>
+<li><p>Remove row with header “Partner” and partner names above 2011 Jan for Exports. <img src="p4.jpg" /></p></li>
+</ol>
+<ol start="3" type="1">
+<li>Data Prep in Tableau</li>
+</ol>
+<ol type="a">
+<li><p>Open Tableau and Import File into Tableau. <img src="p5.jpg" /></p></li>
+<li><p>Drag and drop “Combine Import – Export” sheet in Tableau sheet Data Source <img src="p6.jpg" /></p></li>
+<li><p>Select the columns of the 10 partners (Thailand, Korea etc) and change the column format to Number (whole) by clicking on the # on the top left of the column header.Rename the column Partner to Date and change the format of column to Date. <img src="p7.jpg" /></p></li>
+<li><p>The data needs to be pivoted to build the charts. To pivot the data, select all 10 partners columns, click on the down arrow at the top right beside the column name, select pivot. <img src="p8.jpg" /></p></li>
+<li><p>Change the pivot column names to “Trading Partner” and “Trade Value (S$)”. <img src="p9.jpg" /></p></li>
+<li><p>Check that the columns are in the correct format. Date should be date format, Trading Partner and Import/Export should be a string and Trade Value should be Number (whole).</p></li>
+<li><p>Once verified, go to Data&gt;&gt; Export Data to CSV <img src="p10.jpg" /></p></li>
+<li><p>Within the exported CSV file, transform data to have the following columns: i) Date ii) Trading Partner iii) Import Trade Value and iv) Export Trade Value.</p></li>
+<li><p>This will allow for quicker chart development. Save the file as an .xlsx (Excel) and not .CSV file. <img src="p11.jpg" /></p></li>
+</ol>
+<ol start="4" type="1">
+<li>Building Charts</li>
+</ol>
+<ol type="a">
+<li>Import excel file into new Tableau Book. Check all columns in the correct format as stated above.</li>
+<li>Go to worksheet.</li>
+<li>Go to Analysis &gt; Create Calculated Field. Create a calculated field for Total Trade.</li>
+<li>Total Trade = [Import Trade Value (S$)]+[Export Trade Value (S$)] <img src="p12.jpg" /></li>
+<li>Create Bubble Plot by dragging Import Trade Value to x-axis and dragging Export Trade Value to y-axis</li>
+<li>This will be the base graph. <img src="p13.jpg" /></li>
+<li>Drag and drop Total Trade Value to chart. Drag and drop partners to colour. Within the Marks, choose Circle.</li>
+</ol>
+<p><img src="p14.jpg" style="width:50.0%" /></p>
+<p><img src="p15.jpg" style="width:50.0%" /></p>
+<ol start="5" type="1">
+<li>Improving the visual</li>
+</ol>
+<ol type="a">
+<li>Under Marks&gt;Size, choose a big circle size</li>
+</ol>
+<p><img src="p16.jpg" /> b. Under Marks&gt; Colour, choose blue as the circle border. c. Given some circles will overlap, under Marks&gt; Colour, change the Opacity to 75% <img src="p17.jpg" /> d. Add a date filter</p>
+<p>• Drag and drop Date to Filter • Select All Dates • Once done, under Filter, select year, select discrete and select Show Filter <img src="p18.jpg" /> e. Add Country filter</p>
+<p>• Drag and drop Country to Filter • Under Filter, select show filter f. Under the Partner filter on the right panel, select Multiple Values Filter <img src="p20.jpg" /></p>
+<ol start="6" type="1">
+<li>Diving deeper to improve story telling for visual</li>
+</ol>
+<ol type="a">
+<li><p>Drag and drop Trading Partner to Label</p></li>
+<li><p>Drag and drop Total Trade Value to Label <img src="p21.jpg" /></p></li>
+<li><p>Create Ranking for Import and Export and add to tooltip.</p></li>
+</ol>
+<p>• Go to Analysis &gt; Create Calculated Field • Create Import Ranking with RANK_DENSE(SUM([Import Trade Value (S$)]),‘desc’) • Repeat and create for Export Ranking with RANK_DENSE(SUM([Export Trade Value (S$)]),‘desc’) <img src="p23.jpg" /> • Drag and drop Import Ranking and Export Ranking to Tooltip • Select each under Marks and change Compute Using &gt; Partners <img src="p24.jpg" /> d. Add reference lines to show average for Imports and Exports • Go to Analytics and Add “Average Line” •Add to both Sum(Import Trade) and Sum(Export Trade) <img src="p25.jpg" /></p>
+<ol start="6" type="a">
+<li>Create quadrants • Visualise country by category quadrant “High Import, High Export”, “High Import, Low Export”, “Low Import, Low Export”, “Low Import, High Export” • Go to Analysis &gt; Create Calculated Field&gt; Create Quadrant</li>
+</ol>
+<p>IF SUM([Import Trade Value (S$)]) &gt;= WINDOW_AVG(sum([Import Trade Value (S$)])) AND SUM([Export Trade Value (S$)]) &gt;= WINDOW_AVG(sum([Export Trade Value (S$)])) THEN ‘High Import, High Export’</p>
+<p>ELSEIF SUM([Import Trade Value (S$)]) &lt;= WINDOW_AVG(sum([Import Trade Value (S$)])) AND SUM([Export Trade Value (S$)]) &lt;= WINDOW_AVG(sum([Export Trade Value (S$)])) THEN ‘Low Import, Low Export’</p>
+<p>ELSEIF SUM([Import Trade Value (S$)]) &gt;= WINDOW_AVG(sum([Import Trade Value (S$)])) AND SUM([Export Trade Value (S$)]) &lt;= WINDOW_AVG(sum([Export Trade Value (S$)])) THEN ‘High Import, Low Export’</p>
+<p>ELSEIF SUM([Import Trade Value (S$)]) &lt;= WINDOW_AVG(sum([Import Trade Value (S$)])) AND SUM([Export Trade Value (S$)]) &gt;= WINDOW_AVG(sum([Export Trade Value (S$)])) THEN ‘Low Import, High Export’</p>
+<p>END <img src="p26.jpg" /></p>
+<p>• Drag and drop Quadrant to colour, select Compute Using &gt; Partners • Drag and drop Total Trade Value to size.</p>
+<ol start="7" type="1">
+<li>Touch Up</li>
+</ol>
+<ol type="a">
+<li>Drag and drop Total Trade Value to Label</li>
+<li>Under Marks &gt; Label &gt; Change Label settings to Partner and Total Trade Value</li>
+<li>Edit Tooltip by clicking Tooltip. See the edits to the text in the image below. <img src="p28.jpg" /></li>
+<li>Change label settings as in the image below <img src="p29.jpg" /></li>
+<li>Edit filter titles. In the right panel with the filter, click the triangle and edit title. <img src="p30.jpg" /></li>
+<li>Format &gt; Add Animations to add animation to show the change of partner trade with time.</li>
+</ol>
+<ol start="8" type="1">
+<li>Second Visual – Bar Chart</li>
+</ol>
+<ol type="a">
+<li>Create Bar Chart to show specifics of each partners’ trade data</li>
+<li>Select new worksheet tab within workbook.</li>
+<li>Label as Bar Chart</li>
+<li>Drag and drop Partners to Y-axis</li>
+<li>Drag and drop Import Trade Value to x-axis</li>
+<li>Drag and drop Export Trade Value to x-axis <img src="p31.jpg" /></li>
+<li>Right click Export Trade Value and Import Trade Value header, de-select show header <img src="p32.jpg" /></li>
+<li>Drag and drop measure names to Colour</li>
+</ol>
+<p><img src="p33.jpg" /> i. Within colour filter on right panel, click edit colours to arrive at this panel. Change the colour to blue and select two different shades (one dark and one light) <img src="p34.jpg" /> j. Drag and drop Date to Filter, Select by Years, select all years k. Select show filter and apply to all using the data source <img src="p35.jpg" /> l. Analysis &gt; Create Calculated Field &gt; Trade difference between (Import - Export) ABS([Import Trade Value (S$)]-[Export Trade Value (S$)]) <img src="p36.jpg" /></p>
+<ol start="13" type="a">
+<li>Edit Tooltip. Click tooltip and edit with the following: <img src="p40.jpg" /></li>
+</ol>
+<ol start="9" type="1">
+<li>Create Dashboard</li>
+</ol>
+<ol type="a">
+<li>Create dashboard sheet</li>
+<li>Drag and drop charts <img src="p37.jpg" /></li>
+<li>Drag and drop text box and insert Title, comments and source</li>
+<li>Select text box and click layout out to format box colour</li>
+</ol>
+<p><img src="p38.jpg" /></p>
+<ol start="10" type="1">
+<li>Touch up charts to make dashboard look better</li>
+</ol>
+<ol type="a">
+<li><p>Changed chart titles, labels, font size, colouring for each chart</p></li>
+<li><p>Within dashboard, moved the legend around to improve aesthetics <img src="p39.jpg" /></p></li>
+<li><p>Added comments below title</p></li>
+</ol>
+<h3 id="derived-insights">5. Derived Insights</h3>
+<ul>
+<li><p>Mainland China’s total trade with Singapore has overtaken trade with Malaysia over the years. In 2011, Singapore’s total trade with Malaysia was $113B, ranking it 2 for imports and 1 for exports. By 2020, Malaysia was ranked 2 for imports and 4 for exports with a total trade at $103B. On the other hand, Mainland China was ranked at 4 for imports and exports in 2011 with a total trade of $102B. By 2020, it became Singapore’s largest trading partner ranked 1 for imports and exports with a total trade of $136B.</p></li>
+<li><p>Singapore’s imports and exports to Hong Kong has the largest trade deficit across all years. Hong Kong has also remained as Singapore’s low import but high export market. In 2011, Hong Kong ranked 10 for imports and 3 for exports. In 2020, it ranked 10 for imports and 2 for exports. The difference in trade amount in 2011 was $57B, in 2020 it was $59B.</p></li>
+<li><p>In 2011, Singapore had 3 high import, high export partners. Namely, Malaysia, Mainland China and European Union. On the end of the spectrum, it had 3 low export, low import partners. By 2020, this dynamics had changed. Singapore had 4 high export, high import partners, namely, Mainland China, Malaysia, European Union and United States. In addition, it had 4 partners with low import, low export trade, namely, Japan, Korea, Indonesia and Thailand.</p></li>
+<li><p>Over the years, the animation highlights the growing total trade value between Singapore and the European Union and US, moving from a high import, low export relationship to a high import, high export relationship. While Indonesia has dropped from low import, high export to low import, low export.</p></li>
+<li><p>In 2020, Singapore’s total trade with Mainland China at $136B is larger than its trade with Japan, Korea and Thailand combined at $128B.</p></li>
+<li><p>Singapore’s trade with Japan and Korea is approximately the same in 2020. Total trade with Korea and Japan is $45B and $50B respectively. The trade difference for Singapore and import and export to Korea and Japan is at $2B.</p></li>
+</ul>
+<p>I hope you enjoy exploring the data. Do hover over the bubbles and bar chart to derive deeper insights. The filters are also useful for analysis!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
