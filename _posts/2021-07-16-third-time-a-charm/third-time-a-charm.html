@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["data/car-assignments.csv","data/cc_data.csv","data/gps.csv","data/loyalty_data.csv","third-time-a-charm_files/anchor-4.2.2/anchor.min.js","third-time-a-charm_files/bowser-1.9.3/bowser.min.js","third-time-a-charm_files/distill-2.2.21/template.v2.js","third-time-a-charm_files/header-attrs-2.8/header-attrs.js","third-time-a-charm_files/jquery-1.11.3/jquery.min.js","third-time-a-charm_files/popper-2.6.0/popper.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-bundle.umd.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-light-border.css","third-time-a-charm_files/tippy-6.2.7/tippy.css","third-time-a-charm_files/tippy-6.2.7/tippy.umd.min.js","third-time-a-charm_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1478,8 +1478,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>Distill is a publication format for scientific and technical writing, native to the web.</p>
-<p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Installing and Launching R Packages</span>
+
+<span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'igraph'</span>,<span class='st'>'visNetwork'</span>,<span class='st'>'lubridate'</span>, <span class='st'>'DT'</span>, <span class='st'>'ggiraph'</span>, <span class='st'>'plotly'</span>, <span class='st'>'tidyverse'</span>, <span class='st'>'raster'</span>, <span class='st'>'sf'</span>, <span class='st'>'tmap'</span>, <span class='st'>'clock'</span>, <span class='st'>'rgdal'</span>,<span class='st'>'dplyr'</span>,<span class='st'>'sugrrants'</span>, <span class='st'>'hms'</span>, <span class='st'>'esquisse'</span>,<span class='st'>'Radviz'</span>, <span class='st'>'crosstalk'</span>,<span class='st'>'timetk'</span>, <span class='st'>'tidygraph'</span>, <span class='st'>'ggraph'</span>, <span class='st'>'ggrepel'</span>, <span class='st'>'psych'</span>, <span class='st'>'htmltools'</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Importing car-assignment data</span>
+<span class='va'>car_assign</span><span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/car-assignments.csv"</span><span class='op'>)</span>
+<span class='va'>credit_card</span><span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/cc_data.csv"</span><span class='op'>)</span>
+<span class='va'>gps</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/gps.csv"</span><span class='op'>)</span>
+<span class='va'>loyalty</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/loyalty_data.csv"</span><span class='op'>)</span>
+<span class='co'>#combined_trans &lt;-read_csv("MC2/MC2/All_Combined2.csv")</span>
+<span class='co'>#combined_trans_pivot &lt;- read_csv("MC2/MC2/All_Combined3.csv")</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

@@ -13,11 +13,32 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, fig.retina = 3)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r}
+#Installing and Launching R Packages
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+packages = c('igraph','visNetwork','lubridate', 'DT', 'ggiraph', 'plotly', 'tidyverse', 'raster', 'sf', 'tmap', 'clock', 'rgdal','dplyr','sugrrants', 'hms', 'esquisse','Radviz', 'crosstalk','timetk', 'tidygraph', 'ggraph', 'ggrepel', 'psych', 'htmltools')
+library(ggplot2)
 
+
+for (p in packages){
+if (!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+```{r}
+#Importing car-assignment data
+car_assign<- read_csv("data/car-assignments.csv")
+credit_card<- read_csv("data/cc_data.csv")
+gps <- read_csv("data/gps.csv")
+loyalty <- read_csv("data/loyalty_data.csv")
+#combined_trans <-read_csv("MC2/MC2/All_Combined2.csv")
+#combined_trans_pivot <- read_csv("MC2/MC2/All_Combined3.csv")
+
+``` 
 

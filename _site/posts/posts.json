@@ -11,10 +11,10 @@
     ],
     "date": "2021-07-16",
     "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n#Installing and Launching R Packages\r\n\r\npackages = c('igraph','visNetwork','lubridate', 'DT', 'ggiraph', 'plotly', 'tidyverse', 'raster', 'sf', 'tmap', 'clock', 'rgdal','dplyr','sugrrants', 'hms', 'esquisse','Radviz', 'crosstalk','timetk', 'tidygraph', 'ggraph', 'ggrepel', 'psych', 'htmltools')\r\nlibrary(ggplot2)\r\n\r\n\r\nfor (p in packages){\r\nif (!require(p, character.only = T)){\r\n  install.packages(p)\r\n  }\r\n  library(p, character.only = T)\r\n}\r\n\r\n\r\n\r\n\r\n\r\n#Importing car-assignment data\r\ncar_assign<- read_csv(\"data/car-assignments.csv\")\r\ncredit_card<- read_csv(\"data/cc_data.csv\")\r\ngps <- read_csv(\"data/gps.csv\")\r\nloyalty <- read_csv(\"data/loyalty_data.csv\")\r\n#combined_trans <-read_csv(\"MC2/MC2/All_Combined2.csv\")\r\n#combined_trans_pivot <- read_csv(\"MC2/MC2/All_Combined3.csv\")\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-07-16T20:48:55+08:00",
-    "input_file": {}
+    "last_modified": "2021-07-16T21:15:13+08:00",
+    "input_file": "third-time-a-charm.knit.md"
   },
   {
     "path": "posts/2021-06-18-dataviz-2/",
