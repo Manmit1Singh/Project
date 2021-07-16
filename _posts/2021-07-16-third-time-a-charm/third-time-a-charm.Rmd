@@ -11,7 +11,6 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, fig.retina = 3)
 ```
@@ -37,8 +36,67 @@ car_assign<- read_csv("data/car-assignments.csv")
 credit_card<- read_csv("data/cc_data.csv")
 gps <- read_csv("data/gps.csv")
 loyalty <- read_csv("data/loyalty_data.csv")
-#combined_trans <-read_csv("MC2/MC2/All_Combined2.csv")
-#combined_trans_pivot <- read_csv("MC2/MC2/All_Combined3.csv")
+combined_trans <-read_csv("data/All_Combined2.csv")
+combined_trans_pivot <- read_csv("data/All_Combined3.csv")
 
 ``` 
+
+```{r}
+#Clean Data
+
+#For Car_Assign, Truck Drivers have no Car Id. Change 'NA' to '0' and CarID used as_factor
+car_assign[is.na(car_assign)] = 0
+car_assign$CarID <- as_factor(car_assign$CarID)
+car_assign_clean <- car_assign
+
+
+#Credit Card Timestamp data needs to be in the proper attribute
+credit_card$timestamp <- date_time_parse(credit_card$timestamp,
+                                 zone = "",
+                                 format = "%m/%d/%Y %H:%M")
+
+credit_card$last4ccnum <- as_factor(credit_card$last4ccnum)
+#credit_card$location <- as_factor(credit_card$location)
+credit_card_clean <- credit_card
+
+#GPS Timestamp needs to be in the proper attribute use clock for gps, can separate by different day.see the get_minute and the other clock code chunks
+gps$Timestamp <- date_time_parse(gps$Timestamp,
+                                 zone = "",
+                                 format = "%m/%d/%Y %H:%M:%S")
+gps$id <- as_factor(gps$id)
+gps_clean <- gps
+
+#Loyalty Card Data, timestamp needs to be in the proper attribute and  loyalty number as factor
+loyalty$timestamp <- date_parse(loyalty$timestamp,
+                                format = "%m/%d/%Y")
+loyalty$loyaltynum <- as_factor(loyalty$loyaltynum)
+#loyalty$location <- as_factor(loyalty$location)
+
+loyalty_clean <- loyalty
+
+
+
+
+combined_trans$LoyaltyDate <- date_parse(combined_trans$LoyaltyDate,
+                                         format = "%m/%d/%Y")
+combined_trans$CreditCardDate <- date_parse(combined_trans$CreditCardDate,
+                                         format = "%m/%d/%Y")
+combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
+combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
+combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
+combined_trans$CreditCardTimestamp <- date_time_parse(combined_trans$CreditCardTimestamp,
+                                 zone = "",
+                                 format = "%m/%d/%Y %H:%M")
+
+
+
+#combined_trans_pivot$Date <- date_parse(combined_trans_pivot$Date,
+ #                                        format = "%m/%d/%Y")
+combined_trans_pivot$Date <- date_parse(combined_trans_pivot$Date,
+                                         format = "%m/%d/%Y")
+combined_trans_pivot$CC.Loyalty <- as_factor(combined_trans_pivot$CC.Loyalty)
+combined_trans_pivot$Location <- as_factor(combined_trans_pivot$Location)
+
+```
+
 
