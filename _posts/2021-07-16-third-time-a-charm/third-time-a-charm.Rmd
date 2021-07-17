@@ -1140,6 +1140,7 @@ bi_plot <-plot(cc_graph, vertex.label.cex = 0.8, vertex.label.color = "black") +
 
 For visual exploration, interactivity was added using the following code chunk
 
+
 ```{r fig.width=50, fig.height=50}
 #28 Interactivity 
 
@@ -1168,6 +1169,33 @@ DT::datatable(combined_trans,
               lineHeight = '25%')
 
 ```
+
+
+The network visual fleshed out some interesting information!
+
+
+i. ![](8.01.jpg)
+
+
+
+
+
+ii. ![](8.02.jpg)
+
+
+
+
+
+
+iii. ![](8.03.jpg)
+
+
+
+
+
+
+
+
 
 
 
