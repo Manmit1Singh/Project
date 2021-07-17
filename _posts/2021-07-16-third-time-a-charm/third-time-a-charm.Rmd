@@ -689,13 +689,144 @@ The trends point to the loyalty card being used by employees at F&B outlets such
 
 
 d.Using the heatmap to identify loyalty card holder patterns by location and price
+Similar to the credit card heatmap, loyaltynum is plotted against location.
+
+```{r fig.width=20, fig.height=12}
+#10. HeatMap of Expenditure of Loyalty Holder at Various Locations
+p_hm_loyal <- plot_ly(data=loyalty_clean,
+        x= ~loyaltynum,
+        y= ~location,
+        color=~price) %>%
+  layout(title = 'Heatmap of expenditure of loyalty card holder at various locations')
+  
+p_hm_loyal
+
+DT::datatable(loyalty_clean,
+              filter = 'top') %>%
+  formatStyle(0,
+              target = 'row',
+              lineHeight = '60%')
+```
+
+Some interesting points to note!
+
+- L2769
+
+Loyalty Card Data table:
+![](6.01.jpg)
+
+Credit Card Data table: 
+![](6.02.jpg)
+
+The card holder went to the Airport. Observing the data tables, the patterns are similar to the credit card spending patterns. The card recorded visits to airport between the 6th - 9th and 13th – 16th, spending twice each day at times. However, upon closer inspection, when comparing the loyalty and credit card data tables, the amounts are not similar. Comparing the dates and amount spent, it is noted that the amount is not the same. On 6th Jan, the credit spend was $612.47 for loyalty cards but $1873 for the credit card. 
+
+
+- L5756
+![](6.03.jpg)
+This loyalty card holder has a pattern of travelling from Carlyle Chemical to Katerina Cafe to Nationwide Refinery within a day and the pattern repeats! 
+
+
+- L4063
+![](6.04.jpg)
+
+This loyalty card number was picked out reflecting on the contentious activity at the airport. Investigating this number shows that the loyalty card has been to places that were highlight as contentious and perhaps where suspicious behaviour took place. This includes Carlyle Chemical, Abila Airport, Kronos Pipe and Irrigation and Maxi Iron and Steel. We will keep an eye on you L4063!
+
+
+- Carlyle Chemical
+
+Loyalty Card data
+
+![](6.06.jpg)
+
+
+Comparing this to the credit car card: 
+![](6.05.jpg)
+The data tables highlight the credit card expenditure. It is observed that given the price, cc 9220 seems to own L4063. cc 7792 linked to L5756, cc4530 linked to L8477. However, 7792 spent $4803 on 7th afternoon but did not use the loyalty card. We are suspicious of this!
 
 
 
+e. Spending patterns 
+
+Plotting y= price, x = timestamp, filled with price, line charts can be used to identify peaks and troughs in expenditure with loyalty cards. Lets see what we find! 
+
+```{r fig.width=20, fig.height=12}
+#12.1
+ts_hm_loyalty3 <-combined_trans %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= 
+ "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = LoyaltyDate,
+    y = LoyaltyPrice,
+    colour = LoyaltyNumber
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  labs(
+    x = "Timestamp",
+    y = "Price",
+    title = "Loyalty Card Spending Patterns by Location and Loyalty"
+  ) +
+  theme_minimal() +
+  facet_wrap(vars(LoyaltyLocation))
+
+ggplotly(ts_hm_loyalty3)
+
+```
+
+-	Abila Airport: Loyalty Card number L4063 exhibits the W spending as seen with credit cards. L3317 peaks spending together with L4063 before dropping. L7761’s spending drops over time, almost a mirror image of L3317. The latter two patterns were not as distinct with credit card expenditure. 
+
+-	Frydos Autosupply: L5756 exhibits erratic behaviour, similar to the credit card visuals. 
+
+-	Kronos Pipe and Irrigation and Maximum Iron and Steel: Similar spending patterns to credit card data.
+
+-	Stewart and Sons Fabrication – Only 3 trend lines were spotted for cc data. For loyalty data, there are four trend lines. L2276 is the additional line that does not reflect a trend. This needs to be investigated further.
 
 
+Further trends can be explored using the following:
 
+```{r fig.width=20, fig.height=12}
+#12.2
+ts_hm_loyalty4 <- combined_trans %>%
+ filter(!is.na(LoyaltyDate)) %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = LoyaltyDate,
+    y = LoyaltyLocation,
+    fill = LoyaltyNumber
+  ) +
+  geom_tile(size = 1.2) +
+  scale_fill_hue(direction = 1) +
+  labs(title = "Loyalty Number by Date by Location") +
+  theme_minimal()
 
+ggplotly(ts_hm_loyalty4)
 
+```
 
+```{r fig.width=20, fig.height=12}
 
+#12.3
+ts_hm_loyalty5 <- combined_trans %>%
+ filter(!is.na(LoyaltyDate)) %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(x = CreditCardDate, y = CardNumber, fill = Location) +
+  geom_tile(size = 0.5) +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Date",
+    y = "Loyalty Card Number",
+    title = "Loyalty Card Number by Date"
+  ) +
+  theme_minimal()
+ggplotly(ts_hm_loyalty5)
+
+```
