@@ -225,6 +225,14 @@ credit_card$timestamp <- date_time_parse(credit_card$timestamp,
 credit_card$last4ccnum <- as_factor(credit_card$last4ccnum)
 credit_card_clean <- credit_card #save data set as credit_card_clean
 
+#The credit card timestamp data can be further split 
+credit_card_split <- credit_card_clean %>%
+  mutate(year = format(timestamp,"%m/%d/%Y"),
+         time = format(timestamp,"%H:%M:%S"))
+credit_card_split$year <- date_parse(credit_card_split$year,
+                                format = "%m/%d/%Y")
+credit_card_split$time <- as.hms(credit_card_split$time)
+
 #3. GPS Timestamp needs to be in the proper attribute
 gps$Timestamp <- date_time_parse(gps$Timestamp,
                                  zone = "",
@@ -262,7 +270,7 @@ combined_trans_pivot$CC.Loyalty <- as_factor(combined_trans_pivot$CC.Loyalty)
 combined_trans_pivot$Location <- as_factor(combined_trans_pivot$Location)
 
 
-#Looking at the cleaned data sets
+# 6. Looking at the cleaned data sets
 glimpse(loyalty_clean)
 glimpse(credit_card_clean)
 glimpse(gps_clean)
@@ -271,5 +279,17 @@ glimpse(combined_trans_pivot)
 ```
 
 
+d. Merging Data sets
+The cc and loyalty data was merged and imported earlier. As such, it will not be done in R. However, R is capable of doing this by using a right join and pivoting the data table. Please refer to this [link](https://tidyr.tidyverse.org/articles/pivot.html)for more information.
 
+Next, given that CarID is tagged to employee name, GPS data is merged with Car Assignment data as follows:
+
+```{r}
+#Merge GPS with car assignment. Merge on CarId
+
+Employee_travel <- merge(gps_clean, car_assign_clean, by.x="id", by.y="CarID")
+names(Employee_travel)[names(Employee_travel) == "id"] <- "CarID"
+Employee_travel$NameTitle <- paste(Employee_travel$Name, Employee_travel$CurrentEmploymentTitle)
+glimpse(Employee_travel)
+```
 
