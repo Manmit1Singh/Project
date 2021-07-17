@@ -40,7 +40,9 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, 
 ```{r}
 #Installing and Launching R Packages
 
-packages = c('igraph','visNetwork','lubridate', 'DT', 'ggiraph', 'plotly', 'tidyverse', 'raster', 'sf', 'tmap', 'clock', 'rgdal','dplyr','sugrrants', 'hms', 'esquisse','Radviz', 'crosstalk','timetk', 'tidygraph', 'ggraph', 'ggrepel', 'psych', 'htmltools')
+packages = c('igraph','visNetwork','lubridate', 'DT', 'ggiraph', 'plotly', 'tidyverse', 'raster', 'sf', 'tmap', 'clock', 'rgdal','dplyr', 
+             'hms', 'crosstalk','timetk', 'tidygraph', 'ggraph', 'ggrepel', 'htmltools')
+
 library(ggplot2)
 
 
