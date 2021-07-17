@@ -830,3 +830,182 @@ ts_hm_loyalty5 <- combined_trans %>%
 ggplotly(ts_hm_loyalty5)
 
 ```
+
+
+
+### 7. Exploring travel patterns using GPS Data
+
+For this, it is important to note that the vehicles are tracked periodically as long as they are moving. On that note, the gps available shows when the employees are on the move.  Let us see who has been where! 
+
+
+a. Movement of employees
+Using a grant chart, we plot the employees name concatenated with title along the timestamp (x-axis). This will flesh out travel patterns over the two weeks.
+
+
+```{r fig.width=20, fig.height=12}
+#15 Looking at Movement Data
+
+Employee_travel %>%
+ filter(Timestamp >= "2014-01-05 14:28:01" & Timestamp <= "2014-01-19 04:56:55") %>%
+ ggplot() +
+  aes(x = Timestamp, y = NameTitle, colour = CurrentEmploymentType) +
+  geom_tile(size = 1.2) +
+  scale_color_hue(direction = 1) +
+  labs(
+    x = "Timestamp",
+    y = "Name",
+    title = "Movement of Employees"
+  ) +
+  theme_linedraw()
+```
+
+
+From this, some patterns are highlighted and discussed:
+![](7.01.jpg)
+
+
+1.	Sten/President and CEO was away for a long period and only started being tracked after January 13.
+
+2.	Nils/ IT Helpdesk, Loreto/ Site Control and Isia/Perimeter Control travelled at an odd timing given that the rest of the employees did not do this. This should be investigated further for time of travel and locations.
+
+3.	Birgitta/Geologist and Minke/Perimeter Control have a similar gap in their travel patterns.
+
+4.	Kare Orilla/ Drill Technician, Hideki/Site Control, and Brand/ Drill Technician have unusual large gaps before the day of the disappearance. These patterns are exhibited earlier.
+
+
+b. Investigating Time lag 
+
+The following code chunk is used to understand the time difference between the travel times. Setting it at 10mins gives an indication if the vehicle stopped and visited a location. While the location names are not tagged, by plotting the employees against time and using the time lag, their behaviour patterns can be understood and investigated further.
+
+
+```{r fig.width=20, fig.height=12}
+#16 Lets use lag method to investigate
+
+gps_diff <- gps %>%
+  arrange(id, Timestamp, lat, long) %>%
+  group_by(id) %>%
+  mutate(diff = Timestamp - lag(Timestamp),
+         diff_mins = (as.numeric(diff, units = 'secs'))/60) %>%
+  filter(diff_mins > 10)
+
+
+
+
+Employee_travel2 <- merge(gps_diff, car_assign_clean, by.x="id", by.y="CarID")
+names(Employee_travel2)[names(Employee_travel2) == "id"] <- "CarID"
+glimpse(Employee_travel2)
+
+
+Employee_travel2$NameTitle <- paste(Employee_travel2$Name, Employee_travel2$CurrentEmploymentTitle)
+
+
+time_lag_plot <- Employee_travel2 %>%
+ filter(Timestamp >= "2014-01-05 14:53:01" & Timestamp <= "2014-01-19 04:56:01") %>%
+ ggplot() +
+  aes(x = Timestamp, y = NameTitle, fill= diff_mins, colour = diff_mins) +
+  geom_tile(size = 1.2) +
+  scale_fill_distiller(palette = "Set1", direction = 1) +
+  scale_color_distiller(palette = "Set1", direction = 1) +
+  labs(
+    x = "Timestamp",
+    y = "Employee Name and Title",
+    title = "Time Lag - Difference of > 10mins using GPS data"
+  ) +
+  theme_minimal()
+
+
+
+ggplotly(time_lag_plot)
+
+```
+
+
+The image below highlights some time lags that do not conform to the majority of the employees movements.
+
+![](7.02.jpg)
+
+Some time lag patterns were spotted across the following employees.
+
+(1)	Alda SVP/CIO, Felix/Engineer and Israde/ Drill Technician and Elsa/Drill Technician.
+
+(2)	Isla/ Perimeter Control and Israde/ Drill Technican.
+
+Aside, the following patterns could be investigated as it sticks out from the majority of the low time lag patterns.
+
+(3)	Nils/IT Helpdesk
+
+(4)	Nils/IT Helpdesk
+
+(5)	 Hernie/Perimeter Control
+
+(6)	Felix/ Group Manager
+
+(7)	Bertrand/Facilities group manager
+
+(8)	Aldra/ Badging Office
+
+
+c. Exploring travel patterns on the map!
+
+The code chunk for plotting GPS data on the maps are as follows. From the code chunk, carid is filtered individually to zoom in and explore each car’s gps data. Lets see what suspicious activities we can spot starting with ID ==1, and running through each carid to flesh out suspicious activities. Specifically, looking for erratic travel patterns and irregularities.
+
+```{r fig.width=20, fig.height=12}
+#17. Map Plotting starts here
+bgmap <- raster("data/Geospatial/MC2-tourist.tif")
+bgmap
+```
+
+```{r fig.width=20, fig.height=1}
+#18
+tmap_mode("plot") #there is a plot mode and interactive mode. 
+tmap_mode("view") #interactive version
+
+tm_shape(bgmap)+
+tm_rgb(bgmap, r=1, g=2, b=3,
+        alpha = NA,
+        saturation = 1,
+        interpolate = TRUE,
+        max.value = 255)
+```
+
+```{r fig.width=20, fig.height=12}
+#19 bring in shapefiles - .shp, .shx, .dbf etc 
+
+Abila_st <- st_read(dsn = "data/Geospatial",
+                    layer = "Abila" )
+```
+
+
+```{r fig.width=20, fig.height=12}
+#20 convert aspatial data into a simple feature, st_as_sf converts gps into a simple feature
+gps_sf <- st_as_sf(gps_clean,
+                   coords = c("long", "lat"),
+                   crs = 4326)
+
+```
+
+```{r fig.width=20, fig.height=12}
+#21 convert line to path and group by the ID
+
+gps_path <- gps_sf %>%
+  group_by(id) %>%
+  summarize (m=mean(Timestamp), #dont need to calculate the mean but done because of the nature of group_by
+             do_union=FALSE) %>%
+  st_cast("LINESTRING") #st_cast will link all the gps point to a line string
+
+```
+
+```{r fig.width=20, fig.height=12}
+#22do the mapping
+gps_path_selected <- gps_path %>%
+  filter(id==35)
+tmap_mode("view")
+tm_shape(bgmap) +
+  tm_rgb(bgmap, r=1, g=2,b=3,
+         alpha =NA,
+         saturation = 1,
+         interpolate = TRUE,
+         max.value=255)+
+  tm_shape(gps_path_selected)+
+  tm_lines()
+```
