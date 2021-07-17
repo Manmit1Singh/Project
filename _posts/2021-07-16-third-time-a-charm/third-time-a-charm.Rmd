@@ -10,7 +10,9 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, fig.retina = 3)
+```
 
 ### 1.Overview
 This assignment is part of [VAST Challenge 2021 - Mini Challenge 2 ("MC 2")](https://vast-challenge.github.io/2021/MC2.html)
@@ -130,7 +132,7 @@ The following packages were installed for the assignment: -
 
 -	tmap -  tmap package is a brand new easy way to plot thematic maps in R
 
-•	clock - clock is an R package for working with date-times. It is packed with features, including utilities for: parsing, formatting, arithmetic, rounding, and extraction/updating of individual components
+- clock - For working with date-times. It is packed with features, including utilities for: parsing, formatting, arithmetic, rounding, and extraction/updating of individual components
 
 -	Rgdal - Bindings for the 'Geospatial' Data Abstraction Library
 
@@ -150,21 +152,19 @@ The following packages were installed for the assignment: -
 
 -	Ggrepel - Implements functions to repel overlapping text labels away from each other and away from the data points that they label
 
--	Htmltools – htmltools
+-	Htmltools – Makes it easy to customize the user interface (UI) of any Shiny or R Markdown project by using R code to generate custom HTML (including JavaScript and CSS).
 
 The data sets will be tackled individually to identify trends, suspicious and erratic behavior, and discover relationships. Thereafter, visualisations will be pieced together to address MC-2 questions.
 
 
 
+### 4. Data Preparation 
 
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, fig.retina = 3)
-```
+a. Install and Load Packages 
+The following is done in RStudio using Rmarkdown.
 
 ```{r}
-#Installing and Launching R Packages
+#Install and Launch R Packages
 
 packages = c('igraph','visNetwork','lubridate', 'DT', 'ggiraph', 'plotly', 'tidyverse', 'raster', 'sf', 'tmap', 'clock', 'rgdal','dplyr', 
              'hms', 'crosstalk','timetk', 'tidygraph', 'ggraph', 'ggrepel', 'htmltools', 'sugrrants')
@@ -180,6 +180,10 @@ if (!require(p, character.only = T)){
 }
 ```
 
+b. Importing Data
+
+The files provided (car-assignements, cc_data, loyalty_data and gps) are imported.Two other files were created in excel for data exploration to understand if it was a useful format to have the data in for creating visuals. These files are All_Combined2 and All_Combined3. Specifically, All_Combined2 merges cc and loyalty card data in the following format "Loyalty Date, LoyaltyLocation, Loyalty Price, LoyaltyNumber, CreditCardTimerstamp, Location, CreditCardPrice, CardNumber, CreditCardDate. All_Combined4 merges the cc_data and loyalty_card data in the following table form “Date, Location, Price, CC.Loyalty, CC.Loyalty.Type".
+
 ```{r}
 #Importing car-assignment data
 car_assign<- read_csv("data/car-assignments.csv")
@@ -187,66 +191,85 @@ credit_card<- read_csv("data/cc_data.csv")
 gps <- read_csv("data/gps.csv")
 loyalty <- read_csv("data/loyalty_data.csv")
 combined_trans <-read_csv("data/All_Combined2.csv")
-combined_trans_pivot <- read_csv("data/All_Combined3.csv")
-
+combined_trans_pivot <- read_csv("data/All_Combined4.csv")
 ``` 
+
+c. Data Cleaning
+
+The steps below flesh out the data cleaning process.  
+For each data set, glimpse("data set name") was used to identify the format of the data.Thereafter, the following was performed :- 
+
+-	For columns that contain numbers that are categorical (for example, car id, credit card number and loyalty number), as_factor is used to convert them to factor <fct>
+
+-	Columns that contain timestamp, date and time are converted to <dttm> data type
+
+-	Columns that contain characters are checked to be in <chr> and columns with continuous types are checked to be in <dbl>
+
+-	Empty rows are checked 
+
+The cleaned data sets are fleshed below the code chunk.
 
 ```{r}
 #Clean Data
 
-#For Car_Assign, Truck Drivers have no Car Id. Change 'NA' to '0' and CarID used as_factor
+#1. For Car_Assign, Truck Drivers have no Car Id. Change 'NA' to '0' and CarID used as_factor
 car_assign[is.na(car_assign)] = 0
 car_assign$CarID <- as_factor(car_assign$CarID)
 car_assign_clean <- car_assign
 
 
-#Credit Card Timestamp data needs to be in the proper attribute
+#2. Credit Card Timestamp data needs to be in the proper attribute
 credit_card$timestamp <- date_time_parse(credit_card$timestamp,
                                  zone = "",
                                  format = "%m/%d/%Y %H:%M")
-
 credit_card$last4ccnum <- as_factor(credit_card$last4ccnum)
-#credit_card$location <- as_factor(credit_card$location)
-credit_card_clean <- credit_card
+credit_card_clean <- credit_card #save data set as credit_card_clean
 
-#GPS Timestamp needs to be in the proper attribute use clock for gps, can separate by different day.see the get_minute and the other clock code chunks
+#3. GPS Timestamp needs to be in the proper attribute
 gps$Timestamp <- date_time_parse(gps$Timestamp,
                                  zone = "",
                                  format = "%m/%d/%Y %H:%M:%S")
-gps$id <- as_factor(gps$id)
-gps_clean <- gps
+gps$id <- as_factor(gps$id) #id should be a factor and not continuous numerical format
+gps_clean <- gps #save data set as gps_clean
 
-#Loyalty Card Data, timestamp needs to be in the proper attribute and  loyalty number as factor
+#4. Loyalty Card Data - timestamp needs to be in the proper attribute and loyalty number as factor
 loyalty$timestamp <- date_parse(loyalty$timestamp,
                                 format = "%m/%d/%Y")
 loyalty$loyaltynum <- as_factor(loyalty$loyaltynum)
-#loyalty$location <- as_factor(loyalty$location)
+loyalty_clean <- loyalty #save data set as loyalty_clean
 
-loyalty_clean <- loyalty
-
-
-
-
+#4. For exploration - combined loyalty and credit card data.
+#Sort of the date and time formats
 combined_trans$LoyaltyDate <- date_parse(combined_trans$LoyaltyDate,
                                          format = "%m/%d/%Y")
 combined_trans$CreditCardDate <- date_parse(combined_trans$CreditCardDate,
                                          format = "%m/%d/%Y")
-combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
-combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
-combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
 combined_trans$CreditCardTimestamp <- date_time_parse(combined_trans$CreditCardTimestamp,
                                  zone = "",
                                  format = "%m/%d/%Y %H:%M")
 
+#Identifiers should be in fct format
+combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
+combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
+combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
 
 
-#combined_trans_pivot$Date <- date_parse(combined_trans_pivot$Date,
- #                                        format = "%m/%d/%Y")
+
+#5. Pivoted data
 combined_trans_pivot$Date <- date_parse(combined_trans_pivot$Date,
                                          format = "%m/%d/%Y")
 combined_trans_pivot$CC.Loyalty <- as_factor(combined_trans_pivot$CC.Loyalty)
 combined_trans_pivot$Location <- as_factor(combined_trans_pivot$Location)
 
+
+#Looking at the cleaned data sets
+glimpse(loyalty_clean)
+glimpse(credit_card_clean)
+glimpse(gps_clean)
+glimpse(combined_trans)
+glimpse(combined_trans_pivot)
 ```
+
+
 
 
