@@ -293,3 +293,31 @@ Employee_travel$NameTitle <- paste(Employee_travel$Name, Employee_travel$Current
 glimpse(Employee_travel)
 ```
 
+###ime to get a sense of what was happening!!!
+
+### 5. Exploring Credit Card data
+
+a. Popular Places by Credit Card Data
+
+Using credit card usage count and location, a bar chart is plotted to identify locations where credit cards were more frequently used.
+
+```{r fig.width=12, fig.height=8}
+#This is the start of data exploration
+#Exploring the Credit Card Data
+
+#1. Most Popular Places - barchart
+
+credit_card_clean %>%
+  mutate(location = fct_infreq(location)) %>%
+  ggplot(aes(x = location)) +
+  geom_bar()+
+  xlab("Location") +
+  ylab("Visits Count") +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=1))+
+  labs(title = "Most frequented places according to credit card data")+
+  coord_flip()
+
+```
+
+
+Katerina Cafe, Hippokampos, Brew’ve Been Served and Guy’s Gyros were most frequented by the employees according to  credit card usage. Katerina Cafe, Brew’ve Been Served and Guy’s Gyros are likely F&B outlets, but it is unclear at this juncture what Hippokampos is. Given that Kronos Kares benefit card is given to GASTech employees giving them discounts and rewards, we could expect loyalty card data to show a similar trend in visits. Aside, Daily Dealz, U-Pump, and Frank’s Fuel are places where credit cards were least used and assumed least frequented at this juncture.

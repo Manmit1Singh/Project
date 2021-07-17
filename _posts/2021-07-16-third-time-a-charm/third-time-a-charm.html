@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2a.jpg","2b.1.jpg","2b.2.jpg","2b.jpg","3a.1.jpg","3a.2.jpg","3a.jpg","data/All_Combined2.csv","data/All_Combined2.xlsx","data/All_Combined3.csv","data/All_Combined3.xlsx","data/All_Combined4.csv","data/car-assignments.csv","data/cc_data.csv","data/cc_data22.xlsx","data/cc_nodes1.csv","data/cc_nodes1.xlsx","data/Geospatial/Abila.dbf","data/Geospatial/Abila.kml","data/Geospatial/Abila.prj","data/Geospatial/Abila.sbn","data/Geospatial/Abila.sbx","data/Geospatial/Abila.shp","data/Geospatial/Abila.shx","data/Geospatial/Kronos Island.kmz","data/Geospatial/Kronos_Island.dbf","data/Geospatial/Kronos_Island.prj","data/Geospatial/Kronos_Island.sbn","data/Geospatial/Kronos_Island.sbx","data/Geospatial/Kronos_Island.shp","data/Geospatial/Kronos_Island.shx","data/Geospatial/MC2-tourist.tif","data/gps.csv","data/loyalty_data.csv","data/MC2-tourist.jpg","third-time-a-charm_files/anchor-4.2.2/anchor.min.js","third-time-a-charm_files/bowser-1.9.3/bowser.min.js","third-time-a-charm_files/distill-2.2.21/template.v2.js","third-time-a-charm_files/header-attrs-2.8/header-attrs.js","third-time-a-charm_files/jquery-1.11.3/jquery.min.js","third-time-a-charm_files/popper-2.6.0/popper.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-bundle.umd.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-light-border.css","third-time-a-charm_files/tippy-6.2.7/tippy.css","third-time-a-charm_files/tippy-6.2.7/tippy.umd.min.js","third-time-a-charm_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["2a.jpg","2b.1.jpg","2b.2.jpg","2b.jpg","3a.1.jpg","3a.2.jpg","3a.jpg","data/All_Combined2.csv","data/All_Combined2.xlsx","data/All_Combined3.csv","data/All_Combined3.xlsx","data/All_Combined4.csv","data/car-assignments.csv","data/cc_data.csv","data/cc_data22.xlsx","data/cc_nodes1.csv","data/cc_nodes1.xlsx","data/Geospatial/Abila.dbf","data/Geospatial/Abila.kml","data/Geospatial/Abila.prj","data/Geospatial/Abila.sbn","data/Geospatial/Abila.sbx","data/Geospatial/Abila.shp","data/Geospatial/Abila.shx","data/Geospatial/Kronos Island.kmz","data/Geospatial/Kronos_Island.dbf","data/Geospatial/Kronos_Island.prj","data/Geospatial/Kronos_Island.sbn","data/Geospatial/Kronos_Island.sbx","data/Geospatial/Kronos_Island.shp","data/Geospatial/Kronos_Island.shx","data/Geospatial/MC2-tourist.tif","data/gps.csv","data/loyalty_data.csv","data/MC2-tourist.jpg","third-time-a-charm_files/anchor-4.2.2/anchor.min.js","third-time-a-charm_files/bowser-1.9.3/bowser.min.js","third-time-a-charm_files/distill-2.2.21/template.v2.js","third-time-a-charm_files/figure-html5/unnamed-chunk-5-1.png","third-time-a-charm_files/header-attrs-2.8/header-attrs.js","third-time-a-charm_files/jquery-1.11.3/jquery.min.js","third-time-a-charm_files/popper-2.6.0/popper.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-bundle.umd.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-light-border.css","third-time-a-charm_files/tippy-6.2.7/tippy.css","third-time-a-charm_files/tippy-6.2.7/tippy.umd.min.js","third-time-a-charm_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1753,6 +1753,33 @@ $ CurrentEmploymentType  &lt;chr&gt; &quot;Information Technology&quot;, &quot;I
 $ CurrentEmploymentTitle &lt;chr&gt; &quot;IT Helpdesk&quot;, &quot;IT Helpdesk&quot;, &quot;IT Hel~
 $ NameTitle              &lt;chr&gt; &quot;Nils Calixto IT Helpdesk&quot;, &quot;Nils Cal~</code></pre>
 </div>
+<p>###ime to get a sense of what was happening!!!</p>
+<h3 id="exploring-credit-card-data">5. Exploring Credit Card data</h3>
+<ol type="a">
+<li>Popular Places by Credit Card Data</li>
+</ol>
+<p>Using credit card usage count and location, a bar chart is plotted to identify locations where credit cards were more frequently used.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#This is the start of data exploration</span>
+<span class='co'>#Exploring the Credit Card Data</span>
+
+<span class='co'>#1. Most Popular Places - barchart</span>
+
+<span class='va'>credit_card_clean</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>location <span class='op'>=</span> <span class='fu'>fct_infreq</span><span class='op'>(</span><span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>location</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Location"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"Visits Count"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>vjust <span class='op'>=</span> <span class='fl'>0.5</span>, hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Most frequented places according to credit card data"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="third-time-a-charm_files/figure-html5/unnamed-chunk-5-1.png" width="1152" /></p>
+</div>
+<p>Katerina Cafe, Hippokampos, Brew’ve Been Served and Guy’s Gyros were most frequented by the employees according to credit card usage. Katerina Cafe, Brew’ve Been Served and Guy’s Gyros are likely F&amp;B outlets, but it is unclear at this juncture what Hippokampos is. Given that Kronos Kares benefit card is given to GASTech employees giving them discounts and rewards, we could expect loyalty card data to show a similar trend in visits. Aside, Daily Dealz, U-Pump, and Frank’s Fuel are places where credit cards were least used and assumed least frequented at this juncture.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
