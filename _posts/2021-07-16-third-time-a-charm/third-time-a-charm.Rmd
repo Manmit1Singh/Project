@@ -406,7 +406,7 @@ DT::datatable(credit_card_split,
               filter = 'top') %>%
   formatStyle(0,
               target = 'row',
-              lineHeight = '25%')
+              lineHeight = '60%')
 ```
 
 
@@ -422,10 +422,14 @@ Travelling from the refinery to Stewart and Sons Fabrication once a week. The em
 
 Employee logged expenditure in the ‘000s at the Carlyle Chemical, sometimes on the same day, other times in consecutive days. The employee also spends ‘000s at the refinery. His expenditure at the Refinery is usually between 11 – 12pm. At Carlyle Chemical, he spends at least once in the morning between 930 to 10. The expenditures in the afternoon vary between 2 – 5pm. Lastly, he goes to the Katerina’s before going to Carlyle’s.
 
+
 -	6816
+
 ![](5.03.jpg)
 
+
 Spends regularly at the cafes. The employee seems to eat out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings. From this we can derive that Ouzeri Eilan could be a F&B outlet as well. 
+
 
 -	8332 
 ![](5.04.jpg)
@@ -437,6 +441,8 @@ Filtering data table for the suspicious locations identified earlier
 
 
 -	Airport 
+
+
 ![](5.05.jpg) 
 
 8642 went to the airport between the 6th -9th and 13th – 16th, spending twice each day between 12-1pm and 3-5pm.
@@ -465,3 +471,147 @@ Two employees with cc numbers 2540 and 9683 spend almost within half an hour to 
 ![](5.10.jpg)
 
 Majority of the cc spent were after 7pm, some as late as 920pm. Notable some spent at 3pm
+
+
+
+e. Overall view of spending trends 
+Using a Gantt chart, by plotting Location (y-axis) against timestamp(x-axis), overall patterns of spending by time are noticed. 
+
+```{r fig.width=20, fig.height=12}
+#6. Credit Card Amount spent at Location 
+ts_hm_cc2 <- credit_card_split %>%
+ filter(timestamp >= "2014-01-05 15:28:00" & timestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = timestamp,
+    y = location,
+    fill = price,
+    colour = price,
+    tooltip = last4ccnum
+  ) +
+  geom_tile(size = 1.2) +
+  scale_fill_distiller(palette = "Set1", direction = 1) +
+  scale_color_distiller(palette = "Set1", direction = 1) +
+  labs(
+    x = "Timestamp",
+    y = "Location",
+    title = "Heatmap - Amount spend at location"
+  ) +
+  theme_minimal()
+
+
+ggplotly(ts_hm_cc2)
+
+
+DT::datatable(credit_card_split ,
+              filter = 'top') %>%
+  formatStyle(0,
+              target = 'row',
+              lineHeight = '60%')
+
+```
+
+- Nationwide Refinery: Spending patter seems to have a rhythm. In the first week, the time gaps seems consistent with larger spends. In the second week, we spot a similar rhythm, albeit with smaller spends.
+
+-	Abila Airport: There is a spending pattern and rhythm. It starts off with a small amount expenditure and increases over the week. The following week, the same rhythm pattern repeats.
+
+-Stewart and Sons Fabrication: Consistent spending over the first week with larger amounts, but spend value tapers off during the second week.
+
+- Hippokampos and Hallowed Grounds: These F&B establishments show higher amounts of expenditure at their premises during the first week, but this is not repeated over the second week. The missing pattern makes me suspicious!
+
+
+f. Spending patterns by each cc owner by location
+
+Here we explore how the credit card is spending at each location. Is the cc card owner consistent in spending or are there peaks and troughs? Plot price (y-axis) by credit card date(x-axis) in a line graph and facet with location. 
+
+```{r fig.width=20, fig.height=12}
+#6.1
+ts_hm_cc3 <- combined_trans %>%
+ filter(!is.na(LoyaltyDate)) %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = CreditCardDate,
+    y = CreditCardPrice,
+    colour = CardNumber
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Line Chart Credit Card Trend Expenditure"
+  ) +
+  theme_minimal() +
+  facet_wrap(vars(Location))
+
+ggplotly(ts_hm_cc3)
+
+DT::datatable(combined_trans ,
+              filter = 'top') %>%
+  formatStyle(0,
+              target = 'row',
+              lineHeight = '60%')
+```
+
+
+-	4530 spend pattern Kronos Pipe and Irrigation and Maximum Iron: The card owner has the same spending pattern across the two, starting high on the 7th, before dipping low on the 9th and increasing on the 15th.
+
+-	8642 at Abila: The card owner exhibits at ‘W’ spending patterns at a F&B outlet. Spending twice a day at the outlet.
+
+-	9614 decreases spending at Nationwide Refinery, while 2276, 7792, 3506 and 9735 gradually increase their spend.
+
+-	Abila Scrapyard 2276: Spends High – Low- High Low.
+
+-	Carlyle Chemical: Erratic spending behavior by 7792.
+
+Putting the spend behaviours together, some erratic card behaviour is observed. The detailed observations have been stated.  
+
+```{r fig.width=20, fig.height=12}
+#6.2
+
+ts_hm_cc4 <- combined_trans %>%
+ filter(!is.na(LoyaltyDate)) %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = CreditCardDate,
+    y = CreditCardPrice,
+    colour = Location
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "By Location - Credit Card Trend Expenditure"
+  ) +
+  theme_minimal()
+ggplotly(ts_hm_cc4)
+
+```
+
+To find out more about the relationships, the following chart can be explored.
+
+```{r fig.width=20, fig.height=12}
+
+#6.3
+
+ts_hm_cc5 <- combined_trans %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(x = CreditCardDate, y = CardNumber, fill = Location) +
+  geom_tile(size = 1.2) +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Date",
+    y = "Credit Card Number",
+    title = "Credit Card Number by Location and Day"
+  ) +
+  theme_minimal()
+ggplotly(ts_hm_cc5)
+```
