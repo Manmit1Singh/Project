@@ -1009,3 +1009,169 @@ tm_shape(bgmap) +
   tm_shape(gps_path_selected)+
   tm_lines()
 ```
+
+
+
+i. Lucas Alcazar.IT Technician’s travel pattern seems erratic, frequenting the same places but taking various routes. Some routes are more frequented (darker lines) compared to others. For example, his travels to Kronos Mart was not as frequent as the other routes. Some routes do not seem to fall on roads. 
+![](7.03.jpg)
+
+
+ii. Kare Orilla.Drill Technician’s travel pattern is glaring. The lines are darker indicating a higher car usage. At the same time, the gps pattern shows erratic driving. It is interesting to note that the car never went to the Gastech office. In addition, the car travels to the certain areas where there are no landmarks, only to make a U-turn, as indicated on the map
+
+![](7.04.jpg)
+
+
+iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Manager’s car went to the hotel and left from the hotel. In addition, the second map below - Orhan Strum.SVP/COO car’s gps seems to indicate that it went to the hotel, taking various ingresses and egresses.
+
+![](7.05.jpg)
+
+
+
+![](7.06.jpg)
+
+
+
+iv. Travel to the golf place: Edvard Vann/Perimeter Control , Felix Balas/Engineer, Sten Sanjorge Jr/CEO, and Felix Resumir/Security Group Manager’s gps show that they visited the golf course. Thier travel patterns have the same travel line to the golf course. 
+
+![](7.07.jpg)
+
+
+v. Isia Vann/Perimeter Control (first image) and Bertrand Ovan/Facilities Group Manager (second image) have almost identical travel patterns. 
+
+![](7.08.jpg)
+
+
+![](7.09.jpg)
+
+vi. Axel Calzas.Hydraulic Technician (first image) and Vira Frente.Hydraulic Technician (second image) have similar travel patterns
+
+![](7.10.jpg)
+
+
+![](7.11.jpg)
+
+
+vii. No car goes to the airport. Interestingly, despite expenditure recorded at the airport, and the airport being a distance away from Gastech, there are no records of travel to the airport.
+
+
+
+###8.	Relationships using visNetwork (Nodes and edges)
+
+Relationships between employees were explored using visNetwork. Specifically, creating nodes and edges using credit card data to build a network that could help highlight how payments, locations and employees (by cc number) are connected,
+
+THe following code chunk was used to create a bipartite mapping
+
+```{r fig.width=20, fig.height=12}
+#24 Begin Network building
+#Nodes
+sources <- credit_card_split %>%
+  distinct(last4ccnum) %>%
+  rename(label = last4ccnum)
+
+destinations <- credit_card_split %>%
+  distinct(location) %>%
+  rename(label = location)
+
+cc_nodes <- full_join(sources,
+                      destinations,
+                      by = "label")
+
+cc_nodes <- cc_nodes %>%
+  rowid_to_column("id")
+
+```
+
+```{r fig.width=20, fig.height=12}
+#25 Build Edges
+cc_data <- read_csv("data/cc_data.csv")
+cc_data$timestamp <- date_time_parse(cc_data$timestamp,
+zone = "",
+format = "%m/%d/%Y %H:%M")
+cc_data$last4ccnum <- as.character(cc_data$last4ccnum)
+cc_data$Day = get_day(cc_data$timestamp)
+cc_data$Hour = get_hour(cc_data$timestamp)
+
+edges <- cc_data %>%
+  group_by(last4ccnum, location, Day, Hour) %>%
+  summarise(weight = n()) %>%
+  ungroup()
+
+```
+
+```{r fig.width=20, fig.height=12}
+#26 Tidy Data
+cc_edges <- edges %>%
+left_join(cc_nodes,
+by = c("last4ccnum" = "label")) %>%
+rename(from = id)
+
+cc_edges <- cc_edges %>% 
+  left_join(cc_nodes,
+            by = c("location" = "label")) %>%
+  rename(to = id)
+
+cc_edges <- dplyr::select(cc_edges, from, to, Day, Hour, weight)
+glimpse(cc_edges)
+```
+
+```{r fig.width=20, fig.height=12}
+#27 Build Graph
+cc_graph <- tbl_graph(nodes = cc_nodes,
+                      edges = cc_edges,
+                      directed = TRUE)
+
+cc_graph
+plot(cc_graph) + geom_text_repel()
+
+
+bipartite.mapping(cc_graph) 
+V(cc_graph)$type <- bipartite_mapping(cc_graph)$type 
+plot(cc_graph)
+plot(cc_graph, vertex.label.cex = 0.8, vertex.label.color = "black")
+
+V(cc_graph)$color <- ifelse(V(cc_graph)$type, "lightblue", "salmon")
+V(cc_graph)$shape <- ifelse(V(cc_graph)$type, "circle", "square")
+E(cc_graph)$color <- "lightgray"
+
+bi_plot <-plot(cc_graph, vertex.label.cex = 0.8, vertex.label.color = "black") + geom_text_repel()
+
+```
+
+
+For visual exploration, interactivity was added using the following code chunk
+
+```{r fig.width=50, fig.height=50}
+#28 Interactivity 
+
+cc_nodes1 <- read_csv("data/cc_nodes1.csv")
+glimpse(cc_nodes1)
+cc_nodes1$id <- as.integer(cc_nodes1$id)
+
+
+cc_nodes1 <- cc_nodes1 %>%
+  rename(group = POI)
+visNetwork(cc_nodes1,cc_edges) %>%
+visIgraphLayout(layout = "layout_with_fr") %>%
+visLegend() %>%
+visLayout(randomSeed = 123)
+
+visNetwork(cc_nodes1, cc_edges, height = "700px", width = "100%") %>%
+  visOptions(highlightNearest = TRUE, 
+             nodesIdSelection = TRUE) %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
+
+DT::datatable(combined_trans,
+              filter = 'top') %>%
+  formatStyle(0,
+              target = 'row',
+              lineHeight = '25%')
+
+```
+
+
+
+
+
+
+
