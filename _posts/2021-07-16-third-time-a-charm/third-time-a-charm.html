@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/All_Combined2.csv","data/All_Combined2.xlsx","data/All_Combined3.csv","data/All_Combined3.xlsx","data/car-assignments.csv","data/cc_data.csv","data/cc_data22.xlsx","data/cc_nodes1.csv","data/cc_nodes1.xlsx","data/Geospatial/Abila.dbf","data/Geospatial/Abila.kml","data/Geospatial/Abila.prj","data/Geospatial/Abila.sbn","data/Geospatial/Abila.sbx","data/Geospatial/Abila.shp","data/Geospatial/Abila.shx","data/Geospatial/Kronos Island.kmz","data/Geospatial/Kronos_Island.dbf","data/Geospatial/Kronos_Island.prj","data/Geospatial/Kronos_Island.sbn","data/Geospatial/Kronos_Island.sbx","data/Geospatial/Kronos_Island.shp","data/Geospatial/Kronos_Island.shx","data/Geospatial/MC2-tourist.tif","data/gps.csv","data/loyalty_data.csv","data/MC2-tourist.jpg","third-time-a-charm_files/anchor-4.2.2/anchor.min.js","third-time-a-charm_files/bowser-1.9.3/bowser.min.js","third-time-a-charm_files/distill-2.2.21/template.v2.js","third-time-a-charm_files/header-attrs-2.8/header-attrs.js","third-time-a-charm_files/jquery-1.11.3/jquery.min.js","third-time-a-charm_files/popper-2.6.0/popper.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-bundle.umd.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-light-border.css","third-time-a-charm_files/tippy-6.2.7/tippy.css","third-time-a-charm_files/tippy-6.2.7/tippy.umd.min.js","third-time-a-charm_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["2a.jpg","2b.1.jpg","2b.2.jpg","2b.jpg","3a.1.jpg","3a.2.jpg","3a.jpg","data/All_Combined2.csv","data/All_Combined2.xlsx","data/All_Combined3.csv","data/All_Combined3.xlsx","data/car-assignments.csv","data/cc_data.csv","data/cc_data22.xlsx","data/cc_nodes1.csv","data/cc_nodes1.xlsx","data/Geospatial/Abila.dbf","data/Geospatial/Abila.kml","data/Geospatial/Abila.prj","data/Geospatial/Abila.sbn","data/Geospatial/Abila.sbx","data/Geospatial/Abila.shp","data/Geospatial/Abila.shx","data/Geospatial/Kronos Island.kmz","data/Geospatial/Kronos_Island.dbf","data/Geospatial/Kronos_Island.prj","data/Geospatial/Kronos_Island.sbn","data/Geospatial/Kronos_Island.sbx","data/Geospatial/Kronos_Island.shp","data/Geospatial/Kronos_Island.shx","data/Geospatial/MC2-tourist.tif","data/gps.csv","data/loyalty_data.csv","data/MC2-tourist.jpg","third-time-a-charm_files/anchor-4.2.2/anchor.min.js","third-time-a-charm_files/bowser-1.9.3/bowser.min.js","third-time-a-charm_files/distill-2.2.21/template.v2.js","third-time-a-charm_files/header-attrs-2.8/header-attrs.js","third-time-a-charm_files/jquery-1.11.3/jquery.min.js","third-time-a-charm_files/popper-2.6.0/popper.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-bundle.umd.min.js","third-time-a-charm_files/tippy-6.2.7/tippy-light-border.css","third-time-a-charm_files/tippy-6.2.7/tippy.css","third-time-a-charm_files/tippy-6.2.7/tippy.umd.min.js","third-time-a-charm_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1479,22 +1479,92 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h3 id="overview">1.Overview</h3>
-<p>This assignment is part of VAST Challenge 2021 – Mini Challenge-2 (“MC-2”).</p>
-<p>The challenge scenario is given as follows:</p>
+<p>This assignment is part of <a href="https://vast-challenge.github.io/2021/MC2.html">VAST Challenge 2021 - Mini Challenge 2 (“MC 2”)</a> The challenge scenario is given as follows:</p>
 <p>“In January, 2014, the leaders of GAStech are celebrating their new-found fortune as a result of the initial public offering of their very successful company. In the midst of this celebration, several employees of GAStech go missing. An organization known as the Protectors of Kronos (POK) is suspected in the disappearance, but things may not be what they seem.”</p>
-<p>As part of Mini-Challenge 2, visual analytics is performed on i) employee movement; ii) vehicle tracking; and iii) credit card transactions and loyalty card usage data . From this, visual analysis is performed to identify anomalies and suspicious behaviours. This will be used by the law-enforcement agents to get to the bottom of the case. The visual analysis aims to provide answers to the following questions posed by MC-2: -</p>
+<p>As part of Mini-Challenge 2, visual analytics was performed on i) employee movement using vehicle gps data; ii) credit card transactions; and iii) loyalty card usage data. From this, visual analysis identified anomalies and suspicious behaviours. This data will be used by the law-enforcement agents to get to the bottom of the case!</p>
+<p>The visual analysis aims to provide answers to the following questions posed by MC-2: -</p>
 <ul>
 <li><p>Identify the most popular locations, and when they are popular. What anomalies do you see? What corrections would you recommend to correct these anomalies?</p></li>
 <li><p>What discrepancies between vehicle, credit, and loyalty card data do you find?</p></li>
 <li><p>Can you infer the owners of each credit card and loyalty card? What is your evidence? Where are there uncertainties in your method? Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel.</p></li>
 <li><p>Do you see evidence of suspicious activity? Identify 1- 10 locations where you believe the suspicious activity is occurring, and why.</p></li>
 </ul>
+<p>The assignment report was written using R Markdown in Distill format. The report is published on Nelify. The data is available on <a href="https://github.com/Manmit1Singh/Project/tree/master/_posts/2021-07-16-third-time-a-charm">Github</a>.</p>
+<h3 id="literature-review">2.Literature Review</h3>
+<p>The literature review looks at 3 approaches used to solving MC-2 in 2014. Specifically, a review was done on the data visualisation approach and gaps were identified for i) alternative visual analytics could be used to enhance the user experience; and ii) identification of R packages that could be replicate useful visuals .</p>
+<ol type="a">
+<li>Entry - CSU-Zhao-MC2 , VAST Challenge 2014, Mini-Challenge 2 <img src="2a.jpg" /></li>
+</ol>
+<p>Figure 2.1: From Top Left: Combined Visualisation for Analysis, RadViz and Parallel Coordinates and Matrix Visualisation</p>
+<p><a href="https://www.cs.umd.edu/hcil/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/entries/Central%20South%20University/">Zhao et. al.</a> used D3, MYSQL and Excel to produce the visual for analytics. The team approached the challenge by i) segmenting car-tracking data and tracking start and end points using temporal colour coding on the map; ii) utilizing consumption data to locate precise positions; and iii) created a map by merging multiple layers – tourist map, with the road-network, location and legend layers.</p>
+<p>For visual analysis, the team used i) RadViz Tool; ii) PMViz Tool; and iii) SGGVIz Tool. The RadViz was used to cluster consumer places and employees with common consumptions habits. PMViz was used for Parallel Coordinates and Matrix Visualisation to identify when people were together, by time, place and fleshes out events that happened when running through a timeseries. SGGViz was used to produce a Scatter view and Gantt Chart &amp; GIS view. The visualisations were combined and cross-referenced with interactivity to explore and analyse the data.</p>
+<p>The visualisations used are diverse to understand behaviours. Specifically, RadViz with clustering identifies consumption habit trends of employees. While the Parallel Coordinates and Matrix identifies behaviours. The map traces activity and travel route. These visualisations flesh out the given data neatly. Lastly, the gantt chart helps place the visual in a time-series. Notably, to build the map, the team constructed used 4 layers (legend, location, road-network and tourist map). This was useful when mapping the gps data to get a sense of the routes taken and locations visited.</p>
+<p>Reflecting on their approach, it would be useful to construct the tourist map with the various layers. A search done recommended using raster, sf and tmaps packages in R to accomplish this. For timeseries data, Gantt charts and the timetk package will be explored. Aside, instead of using Radviz in R, the visNetwork package could be useful to build nodes and edges to understand the connections between locations and credit card usage. visNetwork has interactivity for the user to explore underlying relationships. Another approach could be to use a correlation matrix to relate the employees to each other.</p>
+<ol start="2" type="a">
+<li>Entry - Purdue-Guo-MC2 , VAST Challenge 2014, Mini-Challenge 2 <img src="2b.jpg" /></li>
+</ol>
+<p>Figure 2.1: Visual Analysis Interactive Visual</p>
+<p><a href="https://www.cs.umd.edu/hcil/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/entries/Purdue%20University/">Guo et. al.</a> used Dodeca-Rings Map together with a temporal chart and social relationship matrix. The team used HTML5, CSS, SVG, JavaScripts, jQuery, PHP, MySQL and D3 to query, compute, serve and visualize data. The visual is interactive and helps the user understand the activity in a time-series along with the relationships between the employees. The dodecagons flesh out the events on the map. All the visuals are inked for the user to differentiate events.</p>
+<p><img src="2b.1.jpg" /> Figure 2.3: Tooltip for Dodecagons</p>
+<p>The dodecagons also have a tooltip feature which goes into deeper details. However, a lot of detail is shown within a tool tip, it could have been more useful to showcase the details in another window below the dodeca-ring map for exploration. In addition, while the Dodeca rings are neater, for persons unfamiliar with Dodecans, it would be challenging to interpret.</p>
+<p><img src="2b.2.jpg" /> Figure 2.4:Temporal Chart and Social Relationship Matrix</p>
+<p>The temporal chart and social relationship matrix are useful to understand how persons related to one another and the car travel in a timeseries. There are also options to filter the within the temporal chart that makes the interaction easy and allow the user to dig deeper.</p>
+<p>The inking used by the team is particularly attractive and easy to interpret and visualize data. Similar to Guo et. al. in (a), a time-series was used along with mapping of gps data on the map. Instead of using Radviz, the team used a correlation matrix. Reflecting on how the correlation matrix looks, it could be more useful to leverage a network graph instead. That could be more visually useful to spot clusters and relationships between people and locations. Furthermore, the interactive provides additional investigation of the data. Aside, detail to understand movement on the map is useful. In R, a possibility could be to use data tables that allow filtering of data. In addition, using the crosstalk package would link charts to the data tables.</p>
+<ol start="3" type="a">
+<li>Entry - FIAIS-Andrienko-MC2 , VAST Challenge 2014, Mini-Challenge 2 <a href="https://www.cs.umd.edu/hcil/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/entries/Fraunhofer%20IAIS%20and%20City%20University%20London/">FIAIS-Andrienko et. al. </a> used V-Analytics to develop the visual. The motivation for their visual seems to be on leveraging queries to explore the date.</li>
+</ol>
+<p><img src="3a.jpg" /> Figure 2.5: Query Done on Visual</p>
+<p>While this is great for exploration, it is not very beneficial when the user shows this to the rest of the investigation team as the data is not forthcoming and the team will have to continuously explore. This is good for deep investigation, but, not as beneficial for visual analytics to identify underlying trends given the continuous need to query. A good mix would be i) a visualisation that already fleshes out certain abnormalities; and ii) has exploration functions for each visual for the user to explore second-level details. Users unfamiliar with V-analytics may be overwhelmed by the options and the many legends and visuals used. For example, the screen shot below of geospartial data has a lot of going on and is not guided enough for the user to follow. As a recommendation, the map layout could be used given that it is intuitive to many, along with filter options for the vehicles or persons driving.</p>
+<p><img src="3a.1.jpg" /> Figure 2.6: Using Geospartial Data</p>
+<p>Lastly, the tabular representation of data is not a good idea when using visualisation as users will find it difficult to read across columns and rows. The colours are useful but it can be better represented using a temporal chart or Gant chart.</p>
+<p><img src="3a.2.jpg" /> Figure 2.7: Data Visualisation Using a Table</p>
+<p>To bridge the visual analytics gap, it could be useful to use the tmaps in R to plot individual routes taken and understand each user’s travel patterns. In addition, crosstalk could be used to link visuals to tables, vis-à-vis creating a query function. It would be useful for the data tables using crosstalk to have a filter function.</p>
+<ol start="4" type="a">
+<li>Takeaways Key takeways from the above review include:-</li>
+</ol>
+<ul>
+<li><p>Visualisation used should be intuitive for the user to explore;</p></li>
+<li><p>Interactivity, data tables and tooltops are essential to explore second level details and must be used while remaining neat;</p></li>
+<li><p>To understand the data, leverage various charts (e.g use Gantt chart for time-series, and tmaps for gps data). Aside from interactivity, link the charts together to gather deeper insights.</p></li>
+<li><p>Tell the story and do not convolute the charts with too many details and query options;</p></li>
+<li><p>Consider using network visualisations to identify relationships;</p></li>
+<li><p>Inking will be essential to spotting trends given the number of data points.</p></li>
+</ul>
+<h3 id="approach-and-packages">3. Approach and Packages</h3>
+<p>In this assignment, both static and interactive visuals were created to explore and derive insights from the data. Specifically, bar charts, box-plots, heatmaps, visual mapping and network visuals were used.</p>
+<p>The following packages were installed for the assignment: -</p>
+<ul>
+<li><p>Igraph - For creating and manipulating graphs and analysing network</p></li>
+<li><p>visNetwork - visNetwork is an R package for network visualization</p></li>
+<li><p>lubridate - To work with dates and times</p></li>
+<li><p>DT - R data objects (matrices or data frames) can be displayed as tables on HTML pages, and DataTables provides filtering, pagination, sorting, and many other features in the tables</p></li>
+<li><p>Ggiraph - A htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated</p></li>
+<li><p>Plotly - Package for creating interactive web-based graph</p></li>
+<li><p>tidyverse - An opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures</p></li>
+<li><p>Raster - Reading, writing, manipulating, analyzing and modeling of spatial data. The package implements basic and high-level functions for raster data and for vector data operations such as intersections</p></li>
+<li><p>sf - Support for simple features, a standardized way to encode spatial vector data. Binds to ‘GDAL’ for reading and writing data, to ‘GEOS’ for geometrical operations, and to ‘PROJ’ for projection conversions and datum transformations</p></li>
+<li><p>tmap - tmap package is a brand new easy way to plot thematic maps in R</p></li>
+</ul>
+<p>• clock - clock is an R package for working with date-times. It is packed with features, including utilities for: parsing, formatting, arithmetic, rounding, and extraction/updating of individual components</p>
+<ul>
+<li><p>Rgdal - Bindings for the ‘Geospatial’ Data Abstraction Library</p></li>
+<li><p>Dplyr - Provides a set of tools for efficiently manipulating datasets in R</p></li>
+<li><p>Sugrrants - Supporting graphs for analysing time series. Description. Provides ‘ggplot2’ graphics for analysing time series data. It aims to fit into the ‘tidyverse’ and grammar of graphics framework for handling temporal data</p></li>
+<li><p>Hms - Provides a simple class for storing durations or time-of-day values and displaying them in the hh:mm:ss format</p></li>
+<li><p>Crosstalk – Enhances the htmlwidgets package. It extends htmlwidgets with a set of classes, functions, and conventions for implementing cross-widget interactions (currently, linked brushing and filtering)</p></li>
+<li><p>timetk - Consolidates and extends time series functionality from packages including ‘dplyr’, ‘stats’, ‘xts’, ‘forecast’, ‘slider’, ‘padr’, ‘recipes’, and ‘rsample’</p></li>
+<li><p>tidygraph - A huge package that exports 280 different functions and methods. It more or less wraps the full functionality of igraph in a tidy API giving you access to almost all of the dplyr verbs plus a few more, developed for use with relational data</p></li>
+<li><p>Ggraph - An extension of the ggplot2 API tailored to graph visualizations and provides the same flexible approach to building up plots layer by layer</p></li>
+<li><p>Ggrepel - Implements functions to repel overlapping text labels away from each other and away from the data points that they label</p></li>
+<li><p>Htmltools – htmltools</p></li>
+</ul>
+<p>The data sets will be tackled individually to identify trends, suspicious and erratic behavior, and discover relationships. Thereafter, visualisations will be pieced together to address MC-2 questions.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Installing and Launching R Packages</span>
 
 <span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'igraph'</span>,<span class='st'>'visNetwork'</span>,<span class='st'>'lubridate'</span>, <span class='st'>'DT'</span>, <span class='st'>'ggiraph'</span>, <span class='st'>'plotly'</span>, <span class='st'>'tidyverse'</span>, <span class='st'>'raster'</span>, <span class='st'>'sf'</span>, <span class='st'>'tmap'</span>, <span class='st'>'clock'</span>, <span class='st'>'rgdal'</span>,<span class='st'>'dplyr'</span>, 
-             <span class='st'>'hms'</span>, <span class='st'>'crosstalk'</span>,<span class='st'>'timetk'</span>, <span class='st'>'tidygraph'</span>, <span class='st'>'ggraph'</span>, <span class='st'>'ggrepel'</span>, <span class='st'>'htmltools'</span><span class='op'>)</span>
+             <span class='st'>'hms'</span>, <span class='st'>'crosstalk'</span>,<span class='st'>'timetk'</span>, <span class='st'>'tidygraph'</span>, <span class='st'>'ggraph'</span>, <span class='st'>'ggrepel'</span>, <span class='st'>'htmltools'</span>, <span class='st'>'sugrrants'</span><span class='op'>)</span>
 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
