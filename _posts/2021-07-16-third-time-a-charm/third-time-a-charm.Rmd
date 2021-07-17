@@ -387,3 +387,81 @@ check_outlierS <- credit_card_split %>%
   
 ggplotly(check_outlierS)
 ```
+
+
+d. Understanding the spending patterns
+
+A heatmap of the expenditure is plotted along with a datable. The heatmap plots cc number (day) against location, coloured with price. This provides a quick visual of the outlier prices by cc number and place. Alongside, a data table is plotted to gather second level details. 
+
+```{r fig.width=20, fig.height=12}
+#4. HeatMap of Expenditure of Credit Card Holder at Various Locations
+p_hm2 <- plot_ly(data=credit_card_split,
+        x= ~last4ccnum,
+        y= ~location,
+        color=~price) %>%
+  layout(title = 'Heatmap of expenditure of credit card holder at various locations')
+p_hm2
+
+DT::datatable(credit_card_split,
+              filter = 'top') %>%
+  formatStyle(0,
+              target = 'row',
+              lineHeight = '25%')
+```
+
+
+From the visual above, the following cc numbers were investigated.
+
+- 9152
+![](5.01.jpg)
+
+Travelling from the refinery to Stewart and Sons Fabrication once a week. The employee has interesting expenditure patterns, spending $4513 at the refinery and then $1738 at Stewart and Son’s. The person then spends $1903 and $4545 at the Refinery and Stewart’s respectively the next week. The expenditure only occurs in the morning and the employee does not spend anywhere else within Kronos.
+
+- 7792
+![](5.02.jpg)
+
+Employee logged expenditure in the ‘000s at the Carlyle Chemical, sometimes on the same day, other times in consecutive days. The employee also spends ‘000s at the refinery. His expenditure at the Refinery is usually between 11 – 12pm. At Carlyle Chemical, he spends at least once in the morning between 930 to 10. The expenditures in the afternoon vary between 2 – 5pm. Lastly, he goes to the Katerina’s before going to Carlyle’s.
+
+-	6816
+![](5.03.jpg)
+
+Spends regularly at the cafes. The employee seems to eat out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings. From this we can derive that Ouzeri Eilan could be a F&B outlet as well. 
+
+-	8332 
+![](5.04.jpg)
+
+Spent $150 at the Kronos mart at 3:48am. This is a strange time to spend that much at a mart.
+
+
+Filtering data table for the suspicious locations identified earlier
+
+
+-	Airport 
+![](5.05.jpg) 
+
+8642 went to the airport between the 6th -9th and 13th – 16th, spending twice each day between 12-1pm and 3-5pm.
+
+-	Abila Scrapyard
+![](5.06.jpg)
+
+Abila scrapyard was visited by 2276 on both weeks on Tuesday and Thursday, all times were in the afternoon by cc holder 2276. Zooming into 2276's expenditure:
+![](5.07.jpg)
+
+There is trend of places visited. The card holder starts spending on Tuesdays and Thursday by going to the Airport -> Scrapyard -> Stewart and Sons -> Refinery. Ooo I wonder what could be going on here!
+
+- At Albert’s Fine Clothing
+![](5.08.jpg) 
+
+Another contentious location. Spending at this place by employees mainly happens after 8pm! Notably, there are some employees who spend during the afternoon. 
+
+
+- Chostus Hotel 
+![](5.09.jpg)
+
+Two employees with cc numbers 2540 and 9683 spend almost within half an hour to each other. An oulier – 5010- spend on 18th Jan at 12pm, a day after 9683 and 2540. 
+
+
+- Frydos Autosupply n More 
+![](5.10.jpg)
+
+Majority of the cc spent were after 7pm, some as late as 920pm. Notable some spent at 3pm
