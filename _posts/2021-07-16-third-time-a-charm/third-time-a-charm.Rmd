@@ -163,6 +163,7 @@ The data sets will be tackled individually to identify trends, suspicious and er
 a. Install and Load Packages 
 The following is done in RStudio using Rmarkdown.
 
+
 ```{r}
 #Install and Launch R Packages
 
@@ -615,3 +616,86 @@ ts_hm_cc5 <- combined_trans %>%
   theme_minimal()
 ggplotly(ts_hm_cc5)
 ```
+
+
+
+### 6. Time to get a sense of Loyalty Card Data!
+
+a. Most Frequented placed according to loyalty data
+Plotting a bar chart with location against visits count. 
+
+```{r fig.width=12, fig.height=8}
+#Exploring Loyalty Data
+
+#7. Most Popular Places - barchart
+
+loyalty_clean %>%
+  mutate(location = fct_infreq(location)) %>%
+  ggplot(aes(x = location)) +
+  geom_bar()+
+  xlab("Location") +
+  ylab("Visits Count") +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=1))+
+  labs(title = "Most frequented places according to loyalty data")+
+  coord_flip()
+```
+
+The bar chart shows that Katerina Cafe, Hippokampos, Guy’s Gyros were the top 3 places where the loyalty card was used. This is similar to the credit card data. However, the number of times used is different. The least frequented places are U-pump, Frank’s Fuel and Octavo’s Office Supplies. This differs slightly from the credit card data, where Daily Dealz was one of the places with the lowest credit card usage. Noticeably, Daily Dealz was not a location where the loyalty count was used.
+
+
+b. Most Active Users of the Loyalty Card
+
+The usage count is plotted against the loyalty number in a bar chart to understand which card uses were the most active.
+
+```{r fig.width=12, fig.height=8}
+#8. Most Used Loyalty Cards
+loyalty_clean %>%
+  mutate(loyaltynum = fct_infreq(loyaltynum )) %>%
+  ggplot(aes(x = loyaltynum )) +
+  geom_bar()+
+  xlab("Loyalty Number") +
+  ylab("Useage Count") +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=1))+
+  labs(title = "Loyalty cards that were most used")+
+  coord_flip()
+
+```
+
+The most active loyalty cards were L6267, L2490, L2070, and L3366. The least active were L5924, L5485, L2459, and L8477.
+
+
+c. Outliers for Loyalty Cards
+
+Plotting a boxplot with loyaltynum against price, faceted by location gives an indication of outlier data points. From here, we can understand if patterns are similar for both credit card and loyalty cards. In addition, for glaring expenditures, it would be possible to identify a cc match with loyalty card.
+
+
+```{r fig.width=30, fig.height=50}
+#9 Outliers for Loyalty expenditure
+
+#static check
+check_outliers__lylty <- loyalty_clean %>%
+    ggplot(aes(x=loyaltynum, y=price)) +
+    geom_boxplot() +
+    facet_wrap(~location, ncol = 5, scales = "free") +
+    theme_minimal() +
+    theme(panel.border = element_rect(colour="grey60", fill = NA),
+          axis.text.x.bottom = element_blank())
+check_outliers__lylty
+```
+
+
+The trends point to the loyalty card being used by employees at F&B outlets such as Guy’s Gyros and Katerina’s cafe. Outliers reflect a similar trend seen in the usage of credit card data. On that note, for glaring outliers such as the spend at Abila Scrapyard, where only one person spent on particular days, we can connect the dots that a particular loyalty card was used by the credit card holder. We can assume this with some level of confidence. For more popular locations, it would be more challenging to match the data based on price and day to connect the credit card number to loyalty card as loyalty cards could change hands when groups of people visit, for certain individuals to benefit from loyalty card usage. This will be investigated further.
+
+
+
+d.Using the heatmap to identify loyalty card holder patterns by location and price
+
+
+
+
+
+
+
+
+
+
