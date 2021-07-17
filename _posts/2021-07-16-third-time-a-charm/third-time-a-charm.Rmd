@@ -1,7 +1,7 @@
 ---
-title: "Third Time a Charm"
+title: "MC 2 - Viz Assignment"
 description: |
-  A short description of the post.
+  Using visualisation techniques in R to investigate the disappearance of employees at GAStech 
 author:
   - name: Manmit
     url: {}
@@ -10,6 +10,28 @@ output:
   distill::distill_article:
     self_contained: false
 ---
+
+### 1.Overview
+This assignment is part of VAST Challenge 2021 – Mini Challenge-2  (“MC-2”).
+
+The challenge scenario is given as follows: 
+  
+   “In January, 2014, the leaders of GAStech are celebrating their new-found fortune as a result of the initial public offering of their very successful company. In the midst of this celebration, several employees of GAStech go missing. An organization known as the Protectors of Kronos (POK) is suspected in the disappearance, but things may      not be what they seem.”
+   
+As part of Mini-Challenge 2, visual analytics is performed on i) employee movement; ii) vehicle tracking; and iii) credit card transactions and loyalty card usage data . From this, visual analysis is performed to identify anomalies and suspicious behaviours. This will be used by the law-enforcement agents to get to the bottom of the case. 
+The visual analysis aims to provide answers to the following questions posed by MC-2: -
+
+-	Identify the most popular locations, and when they are popular. What anomalies do you see? What corrections would you recommend to correct these anomalies? 
+
+-	What discrepancies between vehicle, credit, and loyalty card data do you find? 
+
+-	Can you infer the owners of each credit card and loyalty card? What is your evidence? Where are there uncertainties in your method? Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel. 
+
+-	Do you see evidence of suspicious activity? Identify 1- 10 locations where you believe the suspicious activity is occurring, and why.
+
+
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, fig.retina = 3)
