@@ -297,7 +297,7 @@ glimpse(Employee_travel)
 
 ### 5. Exploring Credit Card data
 
-a. Popular Places by Credit Card Data
+a. Popular Places by Credit Card ("cc") Data
 
 Using credit card usage count and location, a bar chart is plotted to identify locations where credit cards were more frequently used.
 
@@ -321,3 +321,69 @@ credit_card_clean %>%
 
 
 Katerina Cafe, Hippokampos, Brew’ve Been Served and Guy’s Gyros were most frequented by the employees according to  credit card usage. Katerina Cafe, Brew’ve Been Served and Guy’s Gyros are likely F&B outlets, but it is unclear at this juncture what Hippokampos is. Given that Kronos Kares benefit card is given to GASTech employees giving them discounts and rewards, we could expect loyalty card data to show a similar trend in visits. Aside, Daily Dealz, U-Pump, and Frank’s Fuel are places where credit cards were least used and assumed least frequented at this juncture.
+
+
+b. Most Used Credit Cards
+Plotting the credit card number (last 4 numbers) by count, we examine the most used credit cards. 
+
+```{r fig.width=12, fig.height=8}
+#2. Most Used Credit Cards 
+credit_card_clean %>%
+  mutate(last4ccnum = fct_infreq(last4ccnum)) %>%
+  ggplot(aes(x = last4ccnum)) +
+  geom_bar()+
+  xlab("Last 4 digits of Credit Card") +
+  ylab("Useage Count") +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=1))+
+  labs(title = "Credit cards that were most used")+
+  coord_flip()
+```
+
+
+The bar chart highlights cc ending with 6901, 8332 and 3484 as the most used. While 9614, 9152, and 5010 were the least used. The difference between the most and least used credit cards is ~3x. 
+
+
+c. Outliers in Credit Card Use by Spend and Location 
+Outliers could highlight unusual credit card spend. The price (y axis) is plotted against the cc numbers (x axis). To get a sense of each location’s outliers, the boxplots are faceted by location.
+
+```{r fig.width=30, fig.height=50}
+#3 Outliers for Credit Card expenditure
+
+#static check
+check_outlierS <- credit_card_clean %>%
+    ggplot(aes(x=last4ccnum, y=price)) +
+    geom_boxplot() +
+    facet_wrap(~location, ncol = 5, scales = "free") +
+    theme_minimal() +
+    theme(panel.border = element_rect(colour="grey60", fill = NA),
+          axis.text.x.bottom = element_blank())
+check_outlierS
+```
+
+Some interesting information is beginning to show! 
+
+- The Airport was visited by 5 different persons making multiple purchases over two weeks, spending largely between $1000 - $5000. 
+
+-	It looks like only 1 credit card was used at Abila Scrapyard. What could someone be buying from a Scrapyard? It seems that the employee went to the scrapyard a few times spending between $1000 - $2000 - some priceless scraps?
+
+-	At Albert’s Fine Clothing, one cc spent between $100 - $1250 within a span of two weeks. Curious what the employee bought within a short time span. 
+
+-	Chostus Hotel had only 3 cc used that spent between $100 - $600. This is interesting given wide cost range and short time span it was spent over. Were they together, was it dinner or a staycay? 
+
+-	Hippokampos is starting to look like a F&B outlet. Comparing the spending patterns to Katerina Cafe and Brew’ve Have Been Served. It seems like a frequented place for employees, spending up to ~$150.
+
+-	Frydos Autosupply n More has a major outlier with a cc spend of $10000. This is almost 10x more than the rest.
+
+
+The outliers can be further explored using ggplotly wrapper that give the boxplots interactivity.
+
+```{r fig.width=30, fig.height=50}
+#dynamic check
+check_outlierS <- credit_card_split %>%
+    ggplot(aes(x=last4ccnum, y=price)) +
+    geom_boxplot() +
+    geom_point(position="jitter",size = 0.5)+
+  facet_wrap(~location, ncol = 2, scales = "free")
+  
+ggplotly(check_outlierS)
+```
