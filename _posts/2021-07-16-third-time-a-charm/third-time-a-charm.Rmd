@@ -1174,20 +1174,135 @@ DT::datatable(combined_trans,
 The network visual fleshed out some interesting information!
 
 
-i. ![](8.01.jpg)
+i. Hotel
+
+![](8.01.jpg)
+
+From this, the relationships (official or unofficial) are seen. 
+Cc 5010, 2540 and 9683 went to the hotel. In addition, 5010 was also one of the employees who went to the Golf Course.
+
+
+
+ii. Airport - Scrapyard Relationships
+
+
+![](8.02.jpg)
+
+
+The employee who visited the scrapyard, 2276, also visited the airport. Both these locaions have contentious spending. It is useful to note the other employees who visited the airport as well, as they all be connected (cc 5642, 9220, 9614 and 3506)
 
 
 
 
 
-ii. ![](8.02.jpg)
+iii. Relationships at the Golf Course
+
+
+![](8.03.jpg)
+
+cc 8332, 7688, 8156, 2463 and 5010 are linked to the gold course and may have a relationship.Given the contentious activity at the hotel, all the employees who hold these credit cards should be questioned. 
+
+
+
+### 9. Putting it together
+
+a. Using just the credit and loyalty card data
+
+![](9.01.jpg)
+The most popular locations are i) Katerina Cafe; ii) Hippokampos; iii) Guy’s Gyros
+Brew’ve Been Served
+
+
+They are popular at the following timings:
+# ![](9.03.jpg)
+
+
+
+
+
+The following anomalies were observed. The first bxplot image is for credit card, the second boxplot image is for loyalty card 
+![](9.03.jpg)
+
+![](9.07.jpg)
+
+
+Boxplot were used to check for anomalies. The boxplots were plotted for cc number against price. From this, the following anomalies were detected.
+
+- The Airport was visited by 5 different persons making multiple purchases over two weeks, spending largely between $1000 - $5000. The large expenditure over a short time span makes us suspicious.
+
+- It looks like only 1 credit card was used at Abila Scrapyard multiple times. It seems strange to use a cc at a scrapyard.
+
+- At Albert’s Fine Clothing, one cc spent between $100 - $1250 within a span of two weeks. The multiple wide-ranging expenditure over a short span is strange. It does not follow the the overall trend of expenditure below ~ below $200.
+
+- Chostus Hotel had 3 cc used that spent between $100 - $600. 
+
+- Frydos Autosupply n More has a major outlier with a cc spend of $10000. This is almost 10x more than the rest.
+
+- Places with the least cc visited are intriguing. Daily Dealz, Frank’s Fuel and U-Pump had less than 3 visitors. This seems strange for a few reasons, i) it is unclear what these places are and ii) other employees do not spend here.
+
+
+
+The first image is for credit card. The second is for loyaly cards.
+
+![](9.04.jpg)
+
+
+![](9.08.jpg)
+
+
+From the heatmap the cc numbers were picked up based on the unusual high expenditure. For avoidance of doubt, high expenditures at food places were not investigated at this juncture. Thereafter, the cc numbers were explored in the data table. For further analysis, the locations at which the cc expenditure were further explored. This exploration was done as part of Section 5. The below table provides a summary in response to the question.
+
+
+Card Number | Suspicious Activities/ Trends                                          | Suspicious because of                 |Location            |
+------------|------------------------------------------------------------------------|---------------------------------------|--------------------|
+9152| *Pattern:* Spends once a week at Nationwide Refinery then at Stewart and Son’s Fabrication. *Dates:* 8th Jan and 15th Jan. *Timing:* 0950 – 10am and 1118 to 1120am respectively. *Amount:* ~4500 - ~$1700 - ~$1900 - ~$4500. *Note:* Does not spend anywhere else in Kronos | Pattern and amounts spent. In addition, no other spending in Kronos| Nationwide Refinery, Stewart and Son’s Fabrication |
+7792| *Pattern*: At Carlyle Chemical, employee spends at least once in the morning between 930 to 10 am. Before employee’s afternoon expenditure at Carlyle’s, he goes to Katerina Cafe. Employee’s expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon. *Dates: *At Carlyle -  All weekdays less Monday and Friday  At Refinery – Tuesday, Thursday, Tuessday, Wednesday, Thursday *Timing: *Once in the morning, once in the afternoon *Amount:*  Big variation between ~$500 - ~$4000 *Note: *Does not spend anywhere else in Kronos|Carlyle Chemical and Nationwide Refinery|
+6816|*Pattern:* Spends regularly at the cafes, eating out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings.| | |
+8332| Spent $150 at the Kronos mart at 3:48am. This is a strange time to spend that much at a mart.| Timing of high expenditure at mart| Kronos Mart|
+9735| *Pattern:* Daily spending at Nationwide Refinery before spending at Stewart’s. *Timing:* Consistently - ~10am at the refinery and ~1130 at the Stewart’s *Amount:* Between ~ $600 - $4000 Daily expenditure that has a larger amount variation and consistency of spending| Nationwide Refinery, Stewart and Son’s Fabrication|
+8642| *Pattern:* Spending twice each day between ~$200 - ~$4000 *Timing:* 12-1pm and 3-5pm *Dates:* Monday to Thursday on both weeks (6th -9th and 13th – 16th)| Spending pattern and high expenditure at the airport| Airport|
+2276| *Pattern: *Starts spending on Tuesdays and Thursday by going to the Airport -> Scrapyard -> Stewart and Sons -> Refinery. *Timing:* Tuesday and Thursday on both weeks *Amount: *Varies between ~$800 - ~$4000| Spending pattern and consistency and high amounts at each location|Airport, Nationwide Refinery, Stewart and Son’s Fabrication, Aliba Scrapyard|
+2540, 9683 and 5010| *Pattern:* Send almost within half an hour to each other in the early afternoon between ~1240 – ~1315 An outlier expenditure – 5010- spend on 18th Jan (Saturday) at 12pm, a day after 9683 and 2540.| |Chostus Hotel|
+
+
+
+Nationwide Refinery:  Suspicious Activities/ Trends -> Pattern: In the first week, the time gaps seems consistent with larger spends. In the second week, we spot a similar rhythm, albeit with smaller spends. Suspicious because of pattern and amounts spent. 
+
+Abila Airport: Suspicious Activities/ Trends -> Pattern: It starts off with a small amount expenditure and increases over the week. The following week, the same rhythm pattern repeats. Suspicious because of pattern and amounts spent at the Airport
+
+Stewart and Sons Fabrication: Suspicious Activities/ Trends -> Pattern: Consistent spending over the first week with larger amounts, but spend value tapers off during the second  week. Suspicious because of comparatively lower expenditure in the second week.
+
+Hippokampos and Hallowed Grounds: Suspicious Activities/ Trends ->  Pattern: Higher amounts of expenditure at their premises during the first week, but this is not repeated over the second week. Suspicious because of the missing pattern over the second week. 
+
+
+From the heatmap the loyalty numbers were picked up based on the unusual high expenditure. For avoidance of doubt, high expenditures at food places were not investigated at this juncture. Thereafter, the loyalty numbers were explored in the data table. For further analysis, the locations at which the cc expenditure were further explored. This exploration was done as part of Section 6. The below table provides a summary in response to the question.
+
+![](9.09.jpg)
+
+
+
+The first line chart image is for credit cards and the second line chart image for loyalty cards
+
+
+
+![](9.05.jpg)
+![](9.06.jpg)
+
+
+
+![](9.10.jpg)
+
+![](9.11.jpg)
 
 
 
 
 
 
-iii. ![](8.03.jpg)
+
+
+
+
 
 
 
