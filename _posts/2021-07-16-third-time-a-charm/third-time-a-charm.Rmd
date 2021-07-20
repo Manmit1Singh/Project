@@ -1404,7 +1404,7 @@ For example, from the gps and node data, it appears that Linnea Bergen and Orhan
 This method has uncertainties. Depending on visual data to understand if the location is visited raises questions. Specifically, it is not possible to tell if the person really spent at the location or was just visiting. Moreover, if the person actually made a stop at the location or was just passing through.
 The time lag data also raises its own questions, for example, is 10 minutes sufficient to gauge a stop? Was the owner of the car driving the car or was someone else driving the car. These are not clear at this juncture.
 
-Uncertainty in data  include the accuracy of the gps data. For example, while the airport was a location that had expenditure, no vehicles visited the airport. Could it be that the some vehicles had spoilt devices? In addition, some signals from the data maybe missing due to connectivity, as such the data is not complete. There is also uncertaintiy if loyalty card data only captures a portion of the expenditure, which is common for retail outlets as a means of rewarding points.
+Uncertainty in data  include the accuracy of the gps data. For example, while the airport was a location that had expenditure, no vehicles visited the airport. Could it be that the some vehicles had spoilt devices? In addition, some signals from the data maybe missing due to connectivity, as such the data is not complete. There is also uncertainty if loyalty card data only captures a portion of the expenditure, which is common for retail outlets as a means of rewarding points.
 
 
 d. Relationships offcial or unofficial 
@@ -1413,3 +1413,41 @@ d. Relationships offcial or unofficial
 
 
 ![](9.17.jpg)
+
+
+e. Suspicious Activity
+
+Locations where suspicious activity may be occurring have been listed above.
+For avoidance of doubt, a summarized list is provided below:
+
+
+![](9.18.jpg)
+
+- Airport: Spending pattern twice each day between ~$200 - ~$4000 Timing: 12-1pm and 3-5pm Dates: Monday to Thursday on both weeks (6th -9th and 13th – 16th). In addition, none of the vehicles went to the airport. Spending pattern starts off with a small amount expenditure and increases over the week. The following week, the same rhythm pattern repeats.
+
+
+
+
+![](9.19.jpg)
+- Abila Scrapyard: Only 1 credit card was used at Abila Scrapyard multiple times.SPend pattern ish high-low-high-low. In addition, employee who spends has an interesting pattern consistency  spending on Tuesdays and Thursday by going to the Airport -> Scrapyard -> Stewart and Sons -> Refinery. Timing: Tuesday and Thursday on both weeks Amount: Varies between ~$800 - ~$4000. 
+
+
+![](9.20.jpg)
+
+- Hotel: Expenditure only by 3 cards. Two of the cards spent almost within half an hour to each other in the early afternoon between ~1240 – ~1315 An outlier expenditure – 5010- spend on 18th Jan (Saturday) at 12pm, a day after 9683 and 2540. In addition, Orhan visited the hotel with Linnea Bergen within 30 mins of each other. The involvement of a senior ranking official makes this location contentious.
+
+
+- Carlyle Chemical - Erratic spending behavior. In addition, the employee spends at least once in the morning between 930 to 10 am. The same employee's expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon.Lastly, big variation between ~$500 - ~$4000 and employee does not spend anywhere else in Kronos
+
+![](9.21.jpg)
+
+
+
+- Kronos Pipe and Irrigation: Similar spend pattern to Maximum Iron
+
+- Maximum Iron:Similar spend pattern to Kronos Pipe and Irrigation
+
+- Refinery : Erratic Spending patterns
+
+- Frydos Autosupply: Outlier of $10,000 in expenditure
+
