@@ -831,7 +831,32 @@ ggplotly(ts_hm_loyalty5)
 
 ```
 
+```{r fig.width=20, fig.height=12}
+#12.4
+ts_hm_loyalty6 <- combined_trans %>%
+ filter(!is.na(LoyaltyDate)) %>%
+ filter(!is.na(LoyaltyLocation)) %>%
+ filter(!is.na(LoyaltyPrice)) %>%
+ filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ ggplot() +
+  aes(
+    x = LoyaltyDate,
+    y = LoyaltyPrice,
+    colour = LoyaltyLocation
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Loyalty Card Usage by Date"
+  ) +
+  theme_minimal()
 
+
+
+ggplotly(ts_hm_loyalty6)
+```
 
 ### 7. Exploring travel patterns using GPS Data
 
@@ -1295,26 +1320,96 @@ The first line chart image is for credit cards and the second line chart image f
 ![](9.11.jpg)
 
 
+In addition to the above-mentioned anomalies, the following were noted:
+
+-	Difference in credit card and loyalty card usages and spend at location. To correct this, map the credit card and loyalty card by day, location and expenditure. These cc-loyalty cards relationships should then be filtered out from the data. Following this, explore the loyalty -cc relationships and non-relationships separately. 
+
+-	Spending on credit card on the same day, but a lower expenditure amount recoded on loyalty card. This will appear under the non-relationships from i) above. To explore this, seek to understand if there are certain locations that only record a proportion of the expenditure on loyalty cards (this is common, where loyalty cards capture only 20% of the expenditure).
+
+-	Outlier expenditure at locations such as the at the Airport and Hotel fall outside the nor. These anomalies should be evaluated separately. Specifically, i) removing the outliers to investigate them separately; and ii) investigating the data without the outliers. This will help flesh out other more than usual expenditure. The current outliers create a boxplot that flesh out the outliers that shadow other more than usual expenditures.
 
 
 
+b. Adding the travel data
+
+![](9.12.jpg)
+
+
+![](9.13.jpg)
+
+
+![](9.14.jpg)
 
 
 
+Given the travel data, 
+
+-	The investigation should not only consider individual credit card and loyalty data. Instead, given that there are similarities in travel data between employees, for example – places visited, the credit card and loyalty data could be evaluated in groups where similar i) places were visited; ii) time gap differences were spotted.
+
+-	Travels at odd timings should be used to understand the odd timing expenditure within cc and loyalty data.
+
+Some discrepancies noted from the above are:
+
+-	Expenditure: Cc expenditure is higher than loyalty card at some places. Some places where expenditure occurred, had no gps data.
+
+-	Timings: The places visited, and respective timings of purchase differ across cc and loyalty data. In addition, the gps data does not indicated which places were visited. The gap difference data differs from some of the timings the places were visited.
 
 
 
+c. Inferring Owners of CC and Loyalty Card
+
+The following code chunk was used to plot the linear r/s between the credit card and loyalty card spend. The
+
+```{r fig.width=20, fig.height=12}
+
+#13 Investigate Linear R/s between Credit Card and Loyalty Card data
+combined_trans_pivot1 <- combined_trans_pivot %>% 
+  group_by(Location) %>%
+  group_by(Date) %>%
+  group_by(CC.Loyalty)
+
+combined_trans_pivot1
+
+combined_trans_pivot2 <- combined_trans_pivot1 %>%
+  count(Date, Location, Price,CC.Loyalty, sort = TRUE)
+
+combined_trans_pivot2
+
+p_cc_loyal <- ggplot(combined_trans_pivot2) +
+  aes(
+    x = Date,
+    y = Price,
+    colour = CC.Loyalty,
+    group = CC.Loyalty
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  facet_wrap(vars(Location))
+
+ggplotly(p_cc_loyal)
+
+```
 
 
+From the above, it is possible to zoom in on the locations and use visual analysis to spot which cards and loyalty amount match and which do not.
+Using this, it is possible to infer the credit card owners and loyalty card.
 
 
+Furthermore, it is possible to use the gps data and nodes to determine the owners.
+For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
+
+![](9.15.jpg)
+
+This method has uncertainties. Depending on visual data to understand if the location is visited raises questions. Specifically, it is not possible to tell if the person really spent at the location or was just visiting. Moreover, if the person actually made a stop at the location or was just passing through.
+The time lag data also raises its own questions, for example, is 10 minutes sufficient to gauge a stop? Was the owner of the car driving the car or was someone else driving the car. These are not clear at this juncture.
+
+Uncertainty in data  include the accuracy of the gps data. For example, while the airport was a location that had expenditure, no vehicles visited the airport. Could it be that the some vehicles had spoilt devices? In addition, some signals from the data maybe missing due to connectivity, as such the data is not complete. There is also uncertaintiy if loyalty card data only captures a portion of the expenditure, which is common for retail outlets as a means of rewarding points.
 
 
+d. Relationships offcial or unofficial 
+
+![](9.16.jpg)
 
 
-
-
-
-
-
-
+![](9.17.jpg)
