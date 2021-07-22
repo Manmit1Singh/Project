@@ -15,10 +15,10 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, error = FALSE, 
 ```
 
 ### 1.Overview
-This assignment is part of [VAST Challenge 2021 - Mini Challenge 2 ("MC 2")](https://vast-challenge.github.io/2021/MC2.html)
+This assignment is part of [VAST Challenge 2021 - Mini Challenge 2 ("MC 2")](https://vast-challenge.github.io/2021/MC2.html).
 The challenge scenario is given as follows: 
   
-“In January, 2014, the leaders of GAStech are celebrating their new-found fortune as a result of the initial public offering of their very successful company. In the midst of this celebration, several employees of GAStech go missing. An organization known as the Protectors of Kronos (POK) is suspected in the disappearance, but things may      not be what they seem.”
+*“In January, 2014, the leaders of GAStech are celebrating their new-found fortune as a result of the initial public offering of their very successful company. In the midst of this celebration, several employees of GAStech go missing. An organization known as the Protectors of Kronos (POK) is suspected in the disappearance, but things may not be what they seem.”*
    
 As part of Mini-Challenge 2, visual analytics was performed on i) employee movement using vehicle gps data; ii) credit card transactions; and iii) loyalty card usage data. From this, visual analysis identified anomalies and suspicious behaviours. This data will be used by the law-enforcement agents to get to the bottom of the case! 
 
@@ -36,7 +36,7 @@ The assignment report was written using R Markdown in Distill format. The report
 
 
 ### 2.Literature Review
-The literature review looks at 3 approaches used  to solving MC-2 in 2014. Specifically, a review was done on the data visualisation approach and gaps were identified for i) alternative visual analytics could be used to enhance the user experience; and ii) identification of R packages that could be replicate useful visuals . 
+The literature review looks at 3 approaches used  to solving MC-2 in 2014. Specifically, a review was done on the data visualisation approach and gaps were identified for i) alternative visual analytics that could be used to enhance the user experience; and ii) identification of R packages that could be replicate useful visuals . 
 
 a.	Entry - CSU-Zhao-MC2 , VAST Challenge 2014, Mini-Challenge 2
 ![](2a.jpg)
@@ -45,9 +45,9 @@ Figure 2.1: From Top Left: Combined Visualisation for Analysis, RadViz and Paral
 
 [Zhao et. al.](https://www.cs.umd.edu/hcil/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/entries/Central%20South%20University/) used D3, MYSQL and Excel to produce the visual for analytics. The team approached the challenge by i) segmenting car-tracking data and tracking start and end points using temporal colour coding on the map; ii) utilizing consumption data to locate precise positions; and iii) created a map by merging multiple layers – tourist map, with the road-network, location and legend layers. 
 
-For visual analysis, the team used i) RadViz Tool; ii) PMViz Tool; and iii) SGGVIz Tool. The RadViz was used to cluster consumer places and employees with common consumptions habits. PMViz was used for Parallel Coordinates and Matrix Visualisation to identify when people were together, by time, place and fleshes out events that happened when running through a timeseries.  SGGViz was used to produce a Scatter view and Gantt Chart & GIS view. The visualisations were combined and cross-referenced with interactivity to explore and analyse the data.  
+For visual analysis, the team used i) RadViz Tool; ii) PMViz Tool; and iii) SGGVIz Tool. The RadViz was used to cluster consumer places and employees with common consumption habits. PMViz was used for Parallel Coordinates and Matrix Visualisation to identify when people were together, by time, place and fleshes out events that happened when running through a timeseries.  SGGViz was used to produce a Scatter view and Gantt Chart & GIS view. The visualisations were combined and cross-referenced with interactivity to explore and analyse the data.  
 
-The visualisations used are diverse to understand behaviours. Specifically, RadViz with clustering identifies consumption habit trends of employees. While the Parallel Coordinates and Matrix identifies behaviours. The map traces activity and travel route. These visualisations flesh out the given data neatly. Lastly, the gantt chart helps place the visual in a time-series. Notably, to build the map, the team constructed used 4 layers (legend, location, road-network and tourist map). This was useful when mapping the gps data to get a sense of the routes taken and locations visited.
+The visualisations used are diverse to understand behaviours. Specifically, RadViz with clustering identifies consumption habit trends of employees. While the Parallel Coordinates and Matrix identifies behaviours. The map traces activity and travel route. These visualisations flesh out the given data neatly. Lastly, the Gantt chart helps place the visual in a time-series. Notably, to build the map, the team constructed used 4 layers (legend, location, road-network and tourist map). This was useful when mapping the gps data to get a sense of the routes taken and locations visited.
 
 Reflecting on their approach, it would be useful to construct the tourist map with the various layers. A search done recommended using raster, sf and tmaps packages in R to accomplish this. For timeseries data, Gantt charts and the timetk package will be explored. Aside, instead of using Radviz in R, the visNetwork package could be useful to build nodes and edges to understand the connections between locations and credit card usage. visNetwork has interactivity for the user to explore underlying relationships. Another approach could be to use a correlation matrix to relate the employees to each other. 
 
@@ -91,8 +91,7 @@ Figure 2.7: Data Visualisation Using a Table
 To bridge the visual analytics gap, it could be useful to use the tmaps in R to plot individual routes taken and understand each user’s travel patterns. In addition, crosstalk could be used to link visuals to tables, vis-à-vis creating a query function. It would be useful for the data tables using crosstalk to have a filter function.
 
 
-d. Takeaways
-Key takeways from the above review include:-
+d. Key takeways from the above review include:-
 
 -	Visualisation used should be intuitive for the user to explore;
 
@@ -114,7 +113,7 @@ The following packages were installed for the assignment: -
 
 -	Igraph - For creating and manipulating graphs and analysing network
 
--	visNetwork - visNetwork is an R package for network visualization
+-	visNetwork - R package for network visualization
 
 -	lubridate - To work with dates and times
 
@@ -183,7 +182,7 @@ if (!require(p, character.only = T)){
 
 b. Importing Data
 
-The files provided (car-assignements, cc_data, loyalty_data and gps) are imported.Two other files were created in excel for data exploration to understand if it was a useful format to have the data in for creating visuals. These files are All_Combined2 and All_Combined3. Specifically, All_Combined2 merges cc and loyalty card data in the following format "Loyalty Date, LoyaltyLocation, Loyalty Price, LoyaltyNumber, CreditCardTimerstamp, Location, CreditCardPrice, CardNumber, CreditCardDate. All_Combined4 merges the cc_data and loyalty_card data in the following table form “Date, Location, Price, CC.Loyalty, CC.Loyalty.Type".
+The files provided (car-assignements, cc_data, loyalty_data and gps) are imported. One other file was created in excel for data exploration to understand if it was a useful format to have the data in for creating visuals. The files is All_Combined4. Specifically, All_Combined4 merges the cc_data and loyalty_card data in the following table form “Date, Location, Price, CC.Loyalty". For avoidance of doubt, the file was not used to answer the MC-2 question.
 
 ```{r}
 #Importing car-assignment data
@@ -196,8 +195,7 @@ combined_trans_pivot <- read_csv("data/All_Combined4.csv")
 
 c. Data Cleaning
 
-The steps below flesh out the data cleaning process.  
-For each data set, glimpse("data set name") was used to identify the format of the data.Thereafter, the following was performed :- 
+The steps below flesh out the data cleaning process.For each data set, glimpse("data set name") was used to identify the format of the data.Thereafter, the following was performed :- 
 
 -	For columns that contain numbers that are categorical (for example, car id, credit card number and loyalty number), as_factor is used to convert them to factor <fct>
 
@@ -246,23 +244,6 @@ loyalty$timestamp <- date_parse(loyalty$timestamp,
 loyalty$loyaltynum <- as_factor(loyalty$loyaltynum)
 loyalty_clean <- loyalty #save data set as loyalty_clean
 
-#4. For exploration - combined loyalty and credit card data.
-#Sort of the date and time formats
-#combined_trans$LoyaltyDate <- date_parse(combined_trans$LoyaltyDate,
-#                                         format = "%m/%d/%Y")
-#combined_trans$CreditCardDate <- date_parse(combined_trans$CreditCardDate,
-#                                         format = "%m/%d/%Y")
-#combined_trans$CreditCardTimestamp <- date_time_parse(combined_trans$CreditCardTimestamp,
-#                                 zone = "",
- #                                format = "%m/%d/%Y %H:%M")
-
-#Identifiers should be in fct format
-#combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
-#combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
-#combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
-
-
-
 #5. Pivoted data
 combined_trans_pivot$Date <- date_parse(combined_trans_pivot$Date,
                                          format = "%m/%d/%Y")
@@ -270,19 +251,16 @@ combined_trans_pivot$CC.Loyalty <- as_factor(combined_trans_pivot$CC.Loyalty)
 combined_trans_pivot$Location <- as_factor(combined_trans_pivot$Location)
 
 
-# 6. Looking at the cleaned data sets
+# 5. Looking at the cleaned data sets
 glimpse(loyalty_clean)
 glimpse(credit_card_clean)
 glimpse(gps_clean)
-#glimpse(combined_trans)
-glimpse(combined_trans_pivot)
+glimpse(combined_trans_pivot) #used for exploration, not part of the final solution
 ```
 
 
 d. Merging Data sets
-The cc and loyalty data was merged and imported earlier. As such, it will not be done in R. However, R is capable of doing this by using a right join and pivoting the data table. Please refer to this [link](https://tidyr.tidyverse.org/articles/pivot.html)for more information.
-
-Next, given that CarID is tagged to employee name, GPS data is merged with Car Assignment data as follows:
+Given that CarID is tagged to employee name, GPS data is merged with Car Assignment data as follows:
 
 ```{r}
 #Merge GPS with car assignment. Merge on CarId
@@ -321,6 +299,7 @@ credit_card_clean %>%
 
 
 Katerina Cafe, Hippokampos, Brew’ve Been Served and Guy’s Gyros were most frequented by the employees according to  credit card usage. Katerina Cafe, Brew’ve Been Served and Guy’s Gyros are likely F&B outlets, but it is unclear at this juncture what Hippokampos is. Given that Kronos Kares benefit card is given to GASTech employees giving them discounts and rewards, we could expect loyalty card data to show a similar trend in visits. Aside, Daily Dealz, U-Pump, and Frank’s Fuel are places where credit cards were least used and assumed least frequented at this juncture.
+
 
 
 b. Most Used Credit Cards
@@ -406,7 +385,7 @@ DT::datatable(credit_card_split,
               filter = 'top') %>%
   formatStyle(0,
               target = 'row',
-              lineHeight = '60%')
+              lineHeight = '25%')
 ```
 
 
@@ -464,13 +443,14 @@ Another contentious location. Spending at this place by employees mainly happens
 - Chostus Hotel 
 ![](5.09.jpg)
 
-Two employees with cc numbers 2540 and 9683 spend almost within half an hour to each other. An oulier – 5010- spend on 18th Jan at 12pm, a day after 9683 and 2540. 
+Two employees with cc numbers 2540 and 9683 spent almost within half an hour to each other. An oulier – 5010- spent on 18th Jan at 12pm, a day after 9683 and 2540. 
 
 
 - Frydos Autosupply n More 
 ![](5.10.jpg)
 
 Majority of the cc spent were after 7pm, some as late as 920pm. Notable some spent at 3pm
+
 
 
 
@@ -511,13 +491,18 @@ DT::datatable(credit_card_split ,
 
 ```
 
-- Nationwide Refinery: Spending patter seems to have a rhythm. In the first week, the time gaps seems consistent with larger spends. In the second week, we spot a similar rhythm, albeit with smaller spends.
+- Nationwide Refinery: Spending pattern seems to have a rhythm. In the first week, the time gaps seem consistent with larger spends. In the second week, we spot a similar rhythm, albeit with smaller spends.
 
 -	Abila Airport: There is a spending pattern and rhythm. It starts off with a small amount expenditure and increases over the week. The following week, the same rhythm pattern repeats.
 
--Stewart and Sons Fabrication: Consistent spending over the first week with larger amounts, but spend value tapers off during the second week.
+- Stewart and Sons Fabrication: Consistent spending over the first week with larger amounts, but spend value tapers off during the second week.
 
 - Hippokampos and Hallowed Grounds: These F&B establishments show higher amounts of expenditure at their premises during the first week, but this is not repeated over the second week. The missing pattern makes me suspicious!
+
+
+
+
+
 
 
 f. Spending patterns by each cc owner by location
@@ -550,9 +535,9 @@ DT::datatable(credit_card_split,
 ```
 
 
--	4530 spend pattern Kronos Pipe and Irrigation and Maximum Iron: The card owner has the same spending pattern across the two, starting high on the 7th, before dipping low on the 9th and increasing on the 15th.
+-	4530 spend pattern at Kronos Pipe and Irrigation and Maximum Iron: The card owner has the same spending pattern across the two, starting high on the 7th, before dipping low on the 9th and increasing on the 15th.
 
--	8642 at Abila: The card owner exhibits at ‘W’ spending patterns at a F&B outlet. Spending twice a day at the outlet.
+-	8642 at Abila Airport: The card owner exhibits at ‘W’ spending pattern at the airport. Spending twice a day at times.
 
 -	9614 decreases spending at Nationwide Refinery, while 2276, 7792, 3506 and 9735 gradually increase their spend.
 
@@ -631,7 +616,7 @@ The bar chart shows that Katerina Cafe, Hippokampos, Guy’s Gyros were the top 
 
 b. Most Active Users of the Loyalty Card
 
-The usage count is plotted against the loyalty number in a bar chart to understand which card uses were the most active.
+The usage count is plotted against the loyalty number in a bar chart to understand which card users were the most active.
 
 ```{r fig.width=12, fig.height=8}
 #8. Most Used Loyalty Cards
@@ -707,7 +692,10 @@ Credit Card Data table:
 The card holder went to the Airport. Observing the data tables, the patterns are similar to the credit card spending patterns. The card recorded visits to airport between the 6th - 9th and 13th – 16th, spending twice each day at times. However, upon closer inspection, when comparing the loyalty and credit card data tables, the amounts are not similar. Comparing the dates and amount spent, it is noted that the amount is not the same. On 6th Jan, the credit spend was $612.47 for loyalty cards but $1873 for the credit card. 
 
 
+
 - L5756
+
+
 ![](6.03.jpg)
 This loyalty card holder has a pattern of travelling from Carlyle Chemical to Katerina Cafe to Nationwide Refinery within a day and the pattern repeats! 
 
@@ -725,7 +713,7 @@ Loyalty Card data
 ![](6.06.jpg)
 
 
-Comparing this to the credit car card: 
+Comparing this to the credit card data: 
 ![](6.05.jpg)
 The data tables highlight the credit card expenditure. It is observed that given the price, cc 9220 seems to own L4063. cc 7792 linked to L5756, cc4530 linked to L8477. However, 7792 spent $4803 on 7th afternoon but did not use the loyalty card. We are suspicious of this!
 
@@ -825,9 +813,9 @@ ggplotly(ts_hm_loyalty6)
 
 
 
-By way of exploration, the following code chunk was used to plot the linear r/s between the credit card and loyalty card spend. However, to answer the question posted, another code chuck will be used in section 9.
+By way of exploration, the following code chunk was used to plot the linear relationship between the credit card and loyalty card spend. However, to answer the question posted, another code chuck will be used in section 9.
 
-```{r fig.width=20, fig.height=12}
+```{r fig.width=40, fig.height=12}
 
 #13 Investigate Linear R/s between Credit Card and Loyalty Card data
 combined_trans_pivot1 <- combined_trans_pivot %>% 
@@ -864,7 +852,7 @@ ggplotly(p_cc_loyal)
 ```
 
 
-From the above exploration, it is possible to zoom in on the locations and use visual analysis to spot that not all credit cards and loyalty amount match. Using this, it is possible to infer to some extent the credit card owners and loyalty card. Furthermore, it is possible to use the gps data and nodes to determine the owners. For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
+From the above exploration, it is possible to zoom in on the locations and use visual analysis to spot that not all credit cards and loyalty amount match. Using this, it is possible to infer to some extent the credit card owners and loyalty card. 
 
 
 
@@ -901,7 +889,7 @@ From this, some patterns are highlighted and discussed:
 
 1.	Sten/President and CEO was away for a long period and only started being tracked after January 13.
 
-2.	Nils/ IT Helpdesk, Loreto/ Site Control and Isia/Perimeter Control travelled at an odd timing given that the rest of the employees did not do this. This should be investigated further for time of travel and locations.
+2.	Nils/ IT Helpdesk, Loreto/ Site Control and Isia/Perimeter Control traveled at an odd timing given that the rest of the employees did not do this. This should be investigated further for time of travel and locations.
 
 3.	Birgitta/Geologist and Minke/Perimeter Control have a similar gap in their travel patterns.
 
@@ -910,7 +898,7 @@ From this, some patterns are highlighted and discussed:
 
 b. Investigating Time lag 
 
-The following code chunk is used to understand the time difference between the travel times. Setting it at 10mins gives an indication if the vehicle stopped and visited a location. While the location names are not tagged, by plotting the employees against time and using the time lag, their behaviour patterns can be understood and investigated further.
+The following code chunk is used to understand the time difference between the travel times. Setting it at 10 mins gives an indication if the vehicle stopped and visited a location. While the location names are not tagged, by plotting the employees against time and using the time lag, their behaviour patterns can be understood and investigated further.
 
 
 ```{r fig.width=20, fig.height=12}
@@ -923,16 +911,9 @@ gps_diff <- gps %>%
          diff_mins = (as.numeric(diff, units = 'secs'))/60) %>%
   filter(diff_mins > 10)
 
-
-
-
 Employee_travel2 <- merge(gps_diff, car_assign_clean, by.x="id", by.y="CarID")
 names(Employee_travel2)[names(Employee_travel2) == "id"] <- "CarID"
-glimpse(Employee_travel2)
-
-
 Employee_travel2$NameTitle <- paste(Employee_travel2$Name, Employee_travel2$CurrentEmploymentTitle)
-
 
 time_lag_plot <- Employee_travel2 %>%
  filter(Timestamp >= "2014-01-05 14:53:01" & Timestamp <= "2014-01-19 04:56:01") %>%
@@ -947,8 +928,6 @@ time_lag_plot <- Employee_travel2 %>%
     title = "Time Lag - Difference of > 10mins using GPS data"
   ) +
   theme_minimal()
-
-
 
 ggplotly(time_lag_plot)
 
@@ -1047,13 +1026,27 @@ tm_shape(bgmap) +
 
 
 
+
+
+
+
+
 i. Lucas Alcazar.IT Technician’s travel pattern seems erratic, frequenting the same places but taking various routes. Some routes are more frequented (darker lines) compared to others. For example, his travels to Kronos Mart was not as frequent as the other routes. Some routes do not seem to fall on roads. 
 ![](7.03.jpg)
+
+
+
+
+
 
 
 ii. Kare Orilla.Drill Technician’s travel pattern is glaring. The lines are darker indicating a higher car usage. At the same time, the gps pattern shows erratic driving. It is interesting to note that the car never went to the Gastech office. In addition, the car travels to the certain areas where there are no landmarks, only to make a U-turn, as indicated on the map
 
 ![](7.04.jpg)
+
+
+
+
 
 
 iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Manager’s car went to the hotel and left from the hotel. In addition, the second map below - Orhan Strum.SVP/COO car’s gps seems to indicate that it went to the hotel, taking various ingresses and egresses.
@@ -1062,13 +1055,25 @@ iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Mana
 
 
 
+
+
+
+
 ![](7.06.jpg)
+
+
+
 
 
 
 iv. Travel to the golf place: Edvard Vann/Perimeter Control , Felix Balas/Engineer, Sten Sanjorge Jr/CEO, and Felix Resumir/Security Group Manager’s gps show that they visited the golf course. Thier travel patterns have the same travel line to the golf course. 
 
 ![](7.07.jpg)
+
+
+
+
+
 
 
 v. Isia Vann/Perimeter Control (first image) and Bertrand Ovan/Facilities Group Manager (second image) have almost identical travel patterns. 
@@ -1231,7 +1236,7 @@ ii. Airport - Scrapyard Relationships
 ![](8.02.jpg)
 
 
-The employee who visited the scrapyard, 2276, also visited the airport. Both these locaions have contentious spending. It is useful to note the other employees who visited the airport as well, as they all be connected (cc 5642, 9220, 9614 and 3506)
+The employee who visited the scrapyard, 2276, also visited the airport. Both these locaions have contentious spending. It is useful to note the other employees who visited the airport as well, as they all may be connected (cc 5642, 9220, 9614 and 3506).
 
 
 
@@ -1242,7 +1247,7 @@ iii. Relationships at the Golf Course
 
 ![](8.03.jpg)
 
-cc 8332, 7688, 8156, 2463 and 5010 are linked to the gold course and may have a relationship.Given the contentious activity at the hotel, all the employees who hold these credit cards should be questioned. 
+cc 8332, 7688, 8156, 2463 and 5010 are linked to the Golf Course and may have a relationship. Given the contentious activity at the hotel, all the employees who hold these credit cards should be questioned. 
 
 
 
@@ -1340,7 +1345,7 @@ From the heatmap the cc numbers were picked up based on the unusual high expendi
 Card Number | Suspicious Activities/ Trends                                          | Suspicious because of                 |Location            |
 ------------|------------------------------------------------------------------------|---------------------------------------|--------------------|
 9152| *Pattern:* Spends once a week at Nationwide Refinery then at Stewart and Son’s Fabrication. *Dates:* 8th Jan and 15th Jan. *Timing:* 0950 – 10am and 1118 to 1120am respectively. *Amount:* ~4500 - ~$1700 - ~$1900 - ~$4500. *Note:* Does not spend anywhere else in Kronos | Pattern and amounts spent. In addition, no other spending in Kronos| Nationwide Refinery, Stewart and Son’s Fabrication |
-7792| *Pattern*: At Carlyle Chemical, employee spends at least once in the morning between 930 to 10 am. Before employee’s afternoon expenditure at Carlyle’s, he goes to Katerina Cafe. Employee’s expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon. *Dates: *At Carlyle -  All weekdays less Monday and Friday  At Refinery – Tuesday, Thursday, Tuessday, Wednesday, Thursday *Timing: *Once in the morning, once in the afternoon *Amount:*  Big variation between ~$500 - ~$4000 *Note: *Does not spend anywhere else in Kronos|Carlyle Chemical and Nationwide Refinery|
+7792| *Pattern*: At Carlyle Chemical, employee spends at least once in the morning between 930 to 10 am. Before employee’s afternoon expenditure at Carlyle’s, he goes to Katerina Cafe. Employee’s expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon. *Dates: *At Carlyle -  All weekdays less Monday and Friday  At Refinery – Tuesday, Thursday, Tuessday, Wednesday, Thursday *Timing: *Once in the morning, once in the afternoon *Amount:*  Big variation between ~$500 - ~$4000 *Note: *Does not spend anywhere else in Kronos||Carlyle Chemical and Nationwide Refinery|
 6816|*Pattern:* Spends regularly at the cafes, eating out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings.| | |
 8332| Spent $150 at the Kronos mart at 3:48am. This is a strange time to spend that much at a mart.| Timing of high expenditure at mart| Kronos Mart|
 9735| *Pattern:* Daily spending at Nationwide Refinery before spending at Stewart’s. *Timing:* Consistently - ~10am at the refinery and ~1130 at the Stewart’s *Amount:* Between ~ $600 - $4000 Daily expenditure that has a larger amount variation and consistency of spending| Nationwide Refinery, Stewart and Son’s Fabrication|
