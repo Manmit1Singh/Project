@@ -1209,13 +1209,31 @@ For visual exploration, interactivity was added using the following code chunk
 ```{r fig.width=50, fig.height=50}
 #28 Interactivity 
 
-cc_nodes1 <- read_csv("data/cc_nodes1.csv")
-glimpse(cc_nodes1)
+#cc_nodes1 <- read_csv("data/cc_nodes1.csv")
+#glimpse(cc_nodes1)
+#cc_nodes1 <- cc_nodes1 %>%
+ # rename(group = POI)
+
+cc_nodes_prep <- cc_nodes 
+cc_nodes_prep$label <- as.character(cc_nodes_prep$label)
+
+cc_nodes1 <- cc_nodes_prep  %>%
+  mutate(POI = case_when(
+    startsWith(label, "1") ~ "CC",
+    startsWith(label, "2") ~ "CC",
+    startsWith(label, "3") ~ "CC",
+    startsWith(label, "4") ~ "CC",
+    startsWith(label, "5") ~ "CC",
+    startsWith(label, "6") ~ "CC",
+    startsWith(label, "7") ~ "CC",
+    startsWith(label, "8") ~ "CC",
+    startsWith(label, "9") ~ "CC")
+    )
+cc_nodes1$POI[is.na(cc_nodes1$POI)] <- "Location"
 cc_nodes1$id <- as.integer(cc_nodes1$id)
 
+glimpse(cc_nodes1)
 
-cc_nodes1 <- cc_nodes1 %>%
-  rename(group = POI)
 visNetwork(cc_nodes1,cc_edges) %>%
 visIgraphLayout(layout = "layout_with_fr") %>%
 visLegend() %>%
@@ -1232,6 +1250,7 @@ DT::datatable(combined_trans,
   formatStyle(0,
               target = 'row',
               lineHeight = '25%')
+
 
 ```
 
