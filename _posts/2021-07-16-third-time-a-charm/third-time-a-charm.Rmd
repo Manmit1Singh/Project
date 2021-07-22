@@ -191,7 +191,7 @@ car_assign<- read_csv("data/car-assignments.csv")
 credit_card<- read_csv("data/cc_data.csv")
 gps <- read_csv("data/gps.csv")
 loyalty <- read_csv("data/loyalty_data.csv")
-combined_trans <-read_csv("data/All_Combined2.csv")
+#combined_trans <-read_csv("data/All_Combined2.csv")
 combined_trans_pivot <- read_csv("data/All_Combined4.csv")
 ``` 
 
@@ -249,18 +249,18 @@ loyalty_clean <- loyalty #save data set as loyalty_clean
 
 #4. For exploration - combined loyalty and credit card data.
 #Sort of the date and time formats
-combined_trans$LoyaltyDate <- date_parse(combined_trans$LoyaltyDate,
-                                         format = "%m/%d/%Y")
-combined_trans$CreditCardDate <- date_parse(combined_trans$CreditCardDate,
-                                         format = "%m/%d/%Y")
-combined_trans$CreditCardTimestamp <- date_time_parse(combined_trans$CreditCardTimestamp,
-                                 zone = "",
-                                 format = "%m/%d/%Y %H:%M")
+#combined_trans$LoyaltyDate <- date_parse(combined_trans$LoyaltyDate,
+#                                         format = "%m/%d/%Y")
+#combined_trans$CreditCardDate <- date_parse(combined_trans$CreditCardDate,
+#                                         format = "%m/%d/%Y")
+#combined_trans$CreditCardTimestamp <- date_time_parse(combined_trans$CreditCardTimestamp,
+#                                 zone = "",
+ #                                format = "%m/%d/%Y %H:%M")
 
 #Identifiers should be in fct format
-combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
-combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
-combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
+#combined_trans$LoyaltyNumber <- as_factor(combined_trans$LoyaltyNumber)
+#combined_trans$CardNumber<- as_factor(combined_trans$CardNumber)
+#combined_trans$LoyaltyNumber<- as_factor(combined_trans$LoyaltyNumber)
 
 
 
@@ -275,7 +275,7 @@ combined_trans_pivot$Location <- as_factor(combined_trans_pivot$Location)
 glimpse(loyalty_clean)
 glimpse(credit_card_clean)
 glimpse(gps_clean)
-glimpse(combined_trans)
+#glimpse(combined_trans)
 glimpse(combined_trans_pivot)
 ```
 
@@ -738,26 +738,23 @@ Plotting y= price, x = timestamp, filled with price, line charts can be used to 
 
 ```{r fig.width=20, fig.height=12}
 #12.1
-ts_hm_loyalty3 <-combined_trans %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= 
- "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
- ggplot() +
+ts_hm_loyalty3 <-ggplot(loyalty_clean) +
   aes(
-    x = LoyaltyDate,
-    y = LoyaltyPrice,
-    colour = LoyaltyNumber
+    x = timestamp,
+    y = price,
+    fill = loyaltynum,
+    colour = loyaltynum
   ) +
   geom_line(size = 0.5) +
+  scale_fill_hue(direction = 1) +
   scale_color_hue(direction = 1) +
   labs(
-    x = "Timestamp",
+    x = "Date",
     y = "Price",
     title = "Loyalty Card Spending Patterns by Location and Loyalty"
   ) +
   theme_minimal() +
-  facet_wrap(vars(LoyaltyLocation))
+  facet_wrap(vars(location))
 
 ggplotly(ts_hm_loyalty3)
 
@@ -776,20 +773,15 @@ Further trends can be explored using the following:
 
 ```{r fig.width=20, fig.height=12}
 #12.2
-ts_hm_loyalty4 <- combined_trans %>%
- filter(!is.na(LoyaltyDate)) %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
- ggplot() +
-  aes(
-    x = LoyaltyDate,
-    y = LoyaltyLocation,
-    fill = LoyaltyNumber
-  ) +
+ts_hm_loyalty4 <- ggplot(loyalty_clean) +
+  aes(x = timestamp, y = location, fill = loyaltynum) +
   geom_tile(size = 1.2) +
   scale_fill_hue(direction = 1) +
-  labs(title = "Loyalty Number by Date by Location") +
+  labs(
+    x = "Date",
+    y = "Location",
+    title = "Loyalty Number by Date by Location"
+  ) +
   theme_minimal()
 
 ggplotly(ts_hm_loyalty4)
@@ -799,14 +791,9 @@ ggplotly(ts_hm_loyalty4)
 ```{r fig.width=20, fig.height=12}
 
 #12.3
-ts_hm_loyalty5 <- combined_trans %>%
- filter(!is.na(LoyaltyDate)) %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
- ggplot() +
-  aes(x = CreditCardDate, y = CardNumber, fill = Location) +
-  geom_tile(size = 0.5) +
+ts_hm_loyalty5 <- ggplot(loyalty_clean) +
+  aes(x = timestamp, y = loyaltynum, fill = location) +
+  geom_tile(size = 1.2) +
   scale_fill_hue(direction = 1) +
   labs(
     x = "Date",
@@ -814,23 +801,15 @@ ts_hm_loyalty5 <- combined_trans %>%
     title = "Loyalty Card Number by Date"
   ) +
   theme_minimal()
+
 ggplotly(ts_hm_loyalty5)
 
 ```
 
 ```{r fig.width=20, fig.height=12}
 #12.4
-ts_hm_loyalty6 <- combined_trans %>%
- filter(!is.na(LoyaltyDate)) %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
- ggplot() +
-  aes(
-    x = LoyaltyDate,
-    y = LoyaltyPrice,
-    colour = LoyaltyLocation
-  ) +
+ts_hm_loyalty6 <- ggplot(loyalty_clean) +
+  aes(x = timestamp, y = price, colour = location) +
   geom_line(size = 0.5) +
   scale_color_hue(direction = 1) +
   labs(
@@ -871,6 +850,11 @@ p_cc_loyal <- ggplot(combined_trans_pivot2) +
     colour = CC.Loyalty,
     group = CC.Loyalty
   ) +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Exploration of Loyalty Card to Credit Card Match"
+  ) +
   geom_line(size = 0.5) +
   scale_color_hue(direction = 1) +
   theme_minimal() +
@@ -881,7 +865,7 @@ ggplotly(p_cc_loyal)
 ```
 
 
-From the above exploration, it is possible to zoom in on the locations and use visual analysis to spot that not all credit cards and loyalty amount match. Using this, it is possible to infer the credit card owners and loyalty card. Furthermore, it is possible to use the gps data and nodes to determine the owners. For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
+From the above exploration, it is possible to zoom in on the locations and use visual analysis to spot that not all credit cards and loyalty amount match. Using this, it is possible to infer to some extent the credit card owners and loyalty card. Furthermore, it is possible to use the gps data and nodes to determine the owners. For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
 
 
 
@@ -1226,13 +1210,6 @@ visNetwork(cc_nodes1, cc_edges, height = "700px", width = "100%") %>%
              nodesIdSelection = TRUE) %>%
   visLegend() %>%
   visLayout(randomSeed = 123)
-
-DT::datatable(combined_trans,
-              filter = 'top') %>%
-  formatStyle(0,
-              target = 'row',
-              lineHeight = '25%')
-
 
 ```
 
