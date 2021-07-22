@@ -858,6 +858,46 @@ ts_hm_loyalty6 <- combined_trans %>%
 ggplotly(ts_hm_loyalty6)
 ```
 
+
+
+By way of exploration, the following code chunk was used to plot the linear r/s between the credit card and loyalty card spend. However, to answer the question posted, another code chuck will be used in section 9.
+
+```{r fig.width=20, fig.height=12}
+
+#13 Investigate Linear R/s between Credit Card and Loyalty Card data
+combined_trans_pivot1 <- combined_trans_pivot %>% 
+  group_by(Location) %>%
+  group_by(Date) %>%
+  group_by(CC.Loyalty)
+
+combined_trans_pivot1
+
+combined_trans_pivot2 <- combined_trans_pivot1 %>%
+  count(Date, Location, Price,CC.Loyalty, sort = TRUE)
+
+combined_trans_pivot2
+
+p_cc_loyal <- ggplot(combined_trans_pivot2) +
+  aes(
+    x = Date,
+    y = Price,
+    colour = CC.Loyalty,
+    group = CC.Loyalty
+  ) +
+  geom_line(size = 0.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  facet_wrap(vars(Location))
+
+ggplotly(p_cc_loyal)
+
+```
+
+
+From the above exploration, it is possible to zoom in on the locations and use visual analysis to spot that not all credit cards and loyalty amount match. Using this, it is possible to infer the credit card owners and loyalty card. Furthermore, it is possible to use the gps data and nodes to determine the owners. For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
+
+
+
 ### 7. Exploring travel patterns using GPS Data
 
 For this, it is important to note that the vehicles are tracked periodically as long as they are moving. On that note, the gps available shows when the employees are on the move.  Let us see who has been where! 
@@ -1400,46 +1440,29 @@ Some discrepancies noted from the above are:
 
 c. Inferring Owners of CC and Loyalty Card
 
-The following code chunk was used to plot the linear r/s between the credit card and loyalty card spend. The
+The following code chunk was used to merge loyalty and credit card data on price, location and date. 
+This produced a data set that matches the credit card to loyalty card number. The rows not in the data set are non-matches.
 
-```{r fig.width=20, fig.height=12}
+The method does have some drawbacks. For example, it the loyalty card has no time stamp. On that note, it is not entirely accurate to match the prices based on location. Some employees may have bought items without using a credit card but used the loyalty card. 
 
-#13 Investigate Linear R/s between Credit Card and Loyalty Card data
-combined_trans_pivot1 <- combined_trans_pivot %>% 
-  group_by(Location) %>%
-  group_by(Date) %>%
-  group_by(CC.Loyalty)
+```{r fig.width=40, fig.height=20}
+loyalty_cc_merge <- merge(loyalty_clean, credit_card_split, by.x=c("price","location","timestamp"), by.y=c("price", "location", "year"))
+loyalty_cc_merge<- subset(loyalty_cc_merge, select = -c(timestamp.y,time))
 
-combined_trans_pivot1
-
-combined_trans_pivot2 <- combined_trans_pivot1 %>%
-  count(Date, Location, Price,CC.Loyalty, sort = TRUE)
-
-combined_trans_pivot2
-
-p_cc_loyal <- ggplot(combined_trans_pivot2) +
-  aes(
-    x = Date,
-    y = Price,
-    colour = CC.Loyalty,
-    group = CC.Loyalty
-  ) +
-  geom_line(size = 0.5) +
-  scale_color_hue(direction = 1) +
+l_cc <- ggplot(loyalty_cc_merge) +
+  aes(x = loyaltynum, y = last4ccnum, fill = location) +
+  geom_tile(size = 1.2) +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Credit Card",
+    y = "Loyalty Card",
+    title = "Credit Card vs Loyalty Card ") +
   theme_minimal() +
-  facet_wrap(vars(Location))
+  facet_wrap(vars(timestamp))
 
-ggplotly(p_cc_loyal)
-
+ggplotly(l_cc)
 ```
 
-
-From the above, it is possible to zoom in on the locations and use visual analysis to spot which cards and loyalty amount match and which do not.
-Using this, it is possible to infer the credit card owners and loyalty card.
-
-
-Furthermore, it is possible to use the gps data and nodes to determine the owners.
-For example, from the gps and node data, it appears that Linnea Bergen and Orhan Strum visited the hotel. On that note, they could owners of 2540 and 9683 respectively. It cannot be 5010 because 5010 went to the golf course.
 
 ![](9.15.jpg)
 
