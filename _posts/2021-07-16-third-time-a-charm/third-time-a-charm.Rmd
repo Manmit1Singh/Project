@@ -5,7 +5,7 @@ description: |
 author:
   - name: Manmit
     url: {}
-date: 07-16-2021
+date: 07-25-2021
 output:
   distill::distill_article:
     self_contained: false
@@ -191,7 +191,6 @@ car_assign<- read_csv("data/car-assignments.csv")
 credit_card<- read_csv("data/cc_data.csv")
 gps <- read_csv("data/gps.csv")
 loyalty <- read_csv("data/loyalty_data.csv")
-#combined_trans <-read_csv("data/All_Combined2.csv")
 combined_trans_pivot <- read_csv("data/All_Combined4.csv")
 ``` 
 
