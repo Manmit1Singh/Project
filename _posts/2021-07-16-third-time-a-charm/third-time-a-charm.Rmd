@@ -1239,13 +1239,55 @@ Brew’ve Been Served
 
 
 They are popular at the following timings:
-# ![](9.03.jpg)
+
+To understand the popular timings, credit card data was used.
+The credit card data was split to days and timings using the following code chunk
+
+```{r fig.width=12, fig.height=8}
+credit_card_split2 <- credit_card_split
+credit_card_split2$year <- format(as.Date(credit_card_split2$year,format="%Y-%m-%d"), format = "%d")
+names
+names(credit_card_split2)[names(credit_card_split2) == "year"] <- "Day"
+
+credit_card_split3 <- credit_card_split2  %>%
+    mutate(time = as.POSIXct(time)) %>%
+    group_by(lubridate::hour(time), Day, location) %>%
+    summarise(count=n()) %>%
+    arrange(desc(count))
+
+poptime <- ggplot(credit_card_split3) +
+  aes(
+    x = `lubridate::hour(time)`,
+    y = count,
+    fill = location,
+    colour = location
+  ) +
+  geom_line(size = 0.5) +
+  scale_fill_hue(direction = 1) +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  facet_wrap(vars(Day))
+
+ggplotly(poptime)
+```
+
+From the above, it is possible to explore the popular timings for each location. 
+
+![](9.22.jpg)
+
+
+From the chart above, Brew've Been Served, Guy's Gyros, Hippokampos, and Katerina Cafe are the most popular locations.
+Brew've Been Served is popular in the mornings between 7 - 8 from Monday to Friday.
+Guy's Gyros is popular during lunch and dinner timings at 1pm and 8pm from Monday to Friday.
+Hippokampos is popular during lunch and dinner timings at 1pm and 8pm. Tho the popularity varies across the days. It is open 7 days a week, with fewer people visiting over the weekends,
+Katerina Cafe is popular during lunch and dinner timings at 1pm and 8pm. Tho the popularity varies across the days.It could have as many visitors on some weekends as weekdays.
 
 
 
 
 
-The following anomalies were observed. The first bxplot image is for credit card, the second boxplot image is for loyalty card 
+
+The following anomalies were observed. The first boxplot image is for credit card, the second boxplot image is for loyalty card 
 ![](9.03.jpg)
 
 ![](9.07.jpg)
