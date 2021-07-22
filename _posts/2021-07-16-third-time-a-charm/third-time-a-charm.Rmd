@@ -527,17 +527,10 @@ Here we explore how the credit card is spending at each location. Is the cc card
 
 ```{r fig.width=20, fig.height=12}
 #6.1
-ts_hm_cc3 <- combined_trans %>%
- filter(!is.na(LoyaltyDate)) %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ts_hm_cc3 <- credit_card_split %>%
+ filter(timestamp >= "2014-01-05 15:28:00" & timestamp <= "2014-01-19 04:51:00") %>%
  ggplot() +
-  aes(
-    x = CreditCardDate,
-    y = CreditCardPrice,
-    colour = CardNumber
-  ) +
+  aes(x = year, y = price, colour = last4ccnum) +
   geom_line(size = 0.5) +
   scale_color_hue(direction = 1) +
   labs(
@@ -546,11 +539,11 @@ ts_hm_cc3 <- combined_trans %>%
     title = "Line Chart Credit Card Trend Expenditure"
   ) +
   theme_minimal() +
-  facet_wrap(vars(Location))
+  facet_wrap(vars(location))
 
 ggplotly(ts_hm_cc3)
 
-DT::datatable(combined_trans ,
+DT::datatable(credit_card_split,
               filter = 'top') %>%
   formatStyle(0,
               target = 'row',
@@ -573,17 +566,10 @@ Putting the spend behaviours together, some erratic card behaviour is observed. 
 ```{r fig.width=20, fig.height=12}
 #6.2
 
-ts_hm_cc4 <- combined_trans %>%
- filter(!is.na(LoyaltyDate)) %>%
- filter(!is.na(LoyaltyLocation)) %>%
- filter(!is.na(LoyaltyPrice)) %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ts_hm_cc4 <- credit_card_split %>%
+ filter(timestamp >= "2014-01-05 15:28:00" & timestamp <= "2014-01-19 04:51:00") %>%
  ggplot() +
-  aes(
-    x = CreditCardDate,
-    y = CreditCardPrice,
-    colour = Location
-  ) +
+  aes(x = year, y = price, colour = location) +
   geom_line(size = 0.5) +
   scale_color_hue(direction = 1) +
   labs(
@@ -592,6 +578,7 @@ ts_hm_cc4 <- combined_trans %>%
     title = "By Location - Credit Card Trend Expenditure"
   ) +
   theme_minimal()
+
 ggplotly(ts_hm_cc4)
 
 ```
@@ -602,14 +589,14 @@ To find out more about the relationships, the following chart can be explored.
 
 #6.3
 
-ts_hm_cc5 <- combined_trans %>%
- filter(CreditCardTimestamp >= "2014-01-05 15:28:00" & CreditCardTimestamp <= "2014-01-19 04:51:00") %>%
+ts_hm_cc5 <- credit_card_split %>%
+ filter(timestamp >= "2014-01-05 15:28:00" & timestamp <= "2014-01-19 04:51:00") %>%
  ggplot() +
-  aes(x = CreditCardDate, y = CardNumber, fill = Location) +
+  aes(x = year, y = last4ccnum, fill = location) +
   geom_tile(size = 1.2) +
   scale_fill_hue(direction = 1) +
   labs(
-    x = "Date",
+    x = "Day",
     y = "Credit Card Number",
     title = "Credit Card Number by Location and Day"
   ) +
@@ -1208,11 +1195,6 @@ For visual exploration, interactivity was added using the following code chunk
 
 ```{r fig.width=50, fig.height=50}
 #28 Interactivity 
-
-#cc_nodes1 <- read_csv("data/cc_nodes1.csv")
-#glimpse(cc_nodes1)
-#cc_nodes1 <- cc_nodes1 %>%
- # rename(group = POI)
 
 cc_nodes_prep <- cc_nodes 
 cc_nodes_prep$label <- as.character(cc_nodes_prep$label)
