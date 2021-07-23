@@ -319,6 +319,8 @@ credit_card_clean %>%
 ```
 
 
+
+
 The bar chart highlights cc ending with 6901, 8332 and 3484 as the most used. While 9614, 9152, and 5010 were the least used. The difference between the most and least used credit cards is ~3x. 
 
 
@@ -334,10 +336,18 @@ check_outlierS <- credit_card_clean %>%
     geom_boxplot() +
     facet_wrap(~location, ncol = 5, scales = "free") +
     theme_minimal() +
+   labs(
+    x = "Credit Card Number",
+    y = "Price",
+    title = "Boxplot of Credit Card vs Price by Location")+
     theme(panel.border = element_rect(colour="grey60", fill = NA),
           axis.text.x.bottom = element_blank())
 check_outlierS
 ```
+
+
+
+
 
 Some interesting information is beginning to show! 
 
@@ -361,6 +371,10 @@ The outliers can be further explored using ggplotly wrapper that give the boxplo
 check_outlierS <- credit_card_split %>%
     ggplot(aes(x=last4ccnum, y=price)) +
     geom_boxplot() +
+  labs(
+    x = "Credit Card Number",
+    y = "Price",
+    title = "Boxplot of Credit Card vs Price by Location")+
     geom_point(position="jitter",size = 0.5)+
   facet_wrap(~location, ncol = 2, scales = "free")
   
@@ -393,11 +407,14 @@ From the visual above, the following cc numbers were investigated.
 
 - 9152
 ![](5.01.jpg)
+Figure 4.01: Datatable view of cc9152
+
 
 Travelling from the refinery to Stewart and Sons Fabrication once a week. The employee has interesting expenditure patterns, spending $4513 at the refinery and then $1738 at Stewart and Son’s. The person then spends $1903 and $4545 at the Refinery and Stewart’s respectively the next week. The expenditure only occurs in the morning and the employee does not spend anywhere else within Kronos.
 
 - 7792
 ![](5.02.jpg)
+Figure 4.02: Datatable view of cc7792
 
 Employee logged expenditure in the ‘000s at the Carlyle Chemical, sometimes on the same day, other times in consecutive days. The employee also spends ‘000s at the refinery. His expenditure at the Refinery is usually between 11 – 12pm. At Carlyle Chemical, he spends at least once in the morning between 930 to 10. The expenditures in the afternoon vary between 2 – 5pm. Lastly, he goes to the Katerina’s before going to Carlyle’s.
 
@@ -405,13 +422,15 @@ Employee logged expenditure in the ‘000s at the Carlyle Chemical, sometimes on
 -	6816
 
 ![](5.03.jpg)
-
+Figure 4.03: Datatable view of cc6816
 
 Spends regularly at the cafes. The employee seems to eat out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings. From this we can derive that Ouzeri Eilan could be a F&B outlet as well. 
 
 
 -	8332 
 ![](5.04.jpg)
+Figure 4.04: Datatable view of cc8332
+
 
 Spent $150 at the Kronos mart at 3:48am. This is a strange time to spend that much at a mart.
 
@@ -424,30 +443,42 @@ Filtering data table for the suspicious locations identified earlier
 
 ![](5.05.jpg) 
 
+Figure 4.05: Datatable view of cc spend at the airport
+
 8642 went to the airport between the 6th -9th and 13th – 16th, spending twice each day between 12-1pm and 3-5pm.
 
 -	Abila Scrapyard
 ![](5.06.jpg)
+Figure 4.06: Datatable view of cc spent at Abila Scrapyard
+
 
 Abila scrapyard was visited by 2276 on both weeks on Tuesday and Thursday, all times were in the afternoon by cc holder 2276. Zooming into 2276's expenditure:
+
+
 ![](5.07.jpg)
+Figure 4.07: Datatable view of cc2276
+
 
 There is trend of places visited. The card holder starts spending on Tuesdays and Thursday by going to the Airport -> Scrapyard -> Stewart and Sons -> Refinery. Ooo I wonder what could be going on here!
 
 - At Albert’s Fine Clothing
 ![](5.08.jpg) 
+Figure 4.08: Datatable view of Albert's Fine Clothing
+
 
 Another contentious location. Spending at this place by employees mainly happens after 8pm! Notably, there are some employees who spend during the afternoon. 
 
 
 - Chostus Hotel 
 ![](5.09.jpg)
+Figure 4.09: Datatable view of cc spend at Chostus hotel
 
 Two employees with cc numbers 2540 and 9683 spent almost within half an hour to each other. An oulier – 5010- spent on 18th Jan at 12pm, a day after 9683 and 2540. 
 
 
 - Frydos Autosupply n More 
 ![](5.10.jpg)
+Figure 4.10: Datatable view of cc spend at Frydos
 
 Majority of the cc spent were after 7pm, some as late as 920pm. Notable some spent at 3pm
 
@@ -649,6 +680,10 @@ check_outliers__lylty <- loyalty_clean %>%
     geom_boxplot() +
     facet_wrap(~location, ncol = 5, scales = "free") +
     theme_minimal() +
+   labs(
+    x = "Loyalty Card",
+    y = "Price",
+    title = "Boxplot of Loyalty Card by Price by Location")
     theme(panel.border = element_rect(colour="grey60", fill = NA),
           axis.text.x.bottom = element_blank())
 check_outliers__lylty
@@ -685,9 +720,14 @@ Some interesting points to note!
 
 Loyalty Card Data table:
 ![](6.01.jpg)
+Figure 5.01: Datatable view of loyalty card spend at Abila Airport
+
+
 
 Credit Card Data table: 
 ![](6.02.jpg)
+Figure 5.02: Datatable view of cc spend at Abila Airport
+
 
 The card holder went to the Airport. Observing the data tables, the patterns are similar to the credit card spending patterns. The card recorded visits to airport between the 6th - 9th and 13th – 16th, spending twice each day at times. However, upon closer inspection, when comparing the loyalty and credit card data tables, the amounts are not similar. Comparing the dates and amount spent, it is noted that the amount is not the same. On 6th Jan, the credit spend was $612.47 for loyalty cards but $1873 for the credit card. 
 
@@ -697,11 +737,15 @@ The card holder went to the Airport. Observing the data tables, the patterns are
 
 
 ![](6.03.jpg)
+Figure 5.03: Datatable view of L5756 loyalty card spend 
+
 This loyalty card holder has a pattern of travelling from Carlyle Chemical to Katerina Cafe to Nationwide Refinery within a day and the pattern repeats! 
 
 
 - L4063
 ![](6.04.jpg)
+Figure 5.04: Datatable view of L4063 loyalty card spend
+
 
 This loyalty card number was picked out reflecting on the contentious activity at the airport. Investigating this number shows that the loyalty card has been to places that were highlight as contentious and perhaps where suspicious behaviour took place. This includes Carlyle Chemical, Abila Airport, Kronos Pipe and Irrigation and Maxi Iron and Steel. We will keep an eye on you L4063!
 
@@ -711,10 +755,14 @@ This loyalty card number was picked out reflecting on the contentious activity a
 Loyalty Card data
 
 ![](6.06.jpg)
+Figure 5.05: Datatable view of loyalty card spend at Carlyle Chemical
 
 
 Comparing this to the credit card data: 
 ![](6.05.jpg)
+Figure 5.05: Datatable view of cc spend at Carlyle Chemical
+
+
 The data tables highlight the credit card expenditure. It is observed that given the price, cc 9220 seems to own L4063. cc 7792 linked to L5756, cc4530 linked to L8477. However, 7792 spent $4803 on 7th afternoon but did not use the loyalty card. We are suspicious of this!
 
 
@@ -885,6 +933,8 @@ Employee_travel %>%
 
 From this, some patterns are highlighted and discussed:
 ![](7.01.jpg)
+Figure 6.01: Identifying travel patterns using gps data Name vs Timestamp 
+
 
 
 1.	Sten/President and CEO was away for a long period and only started being tracked after January 13.
@@ -937,6 +987,8 @@ ggplotly(time_lag_plot)
 The image below highlights some time lags that do not conform to the majority of the employees movements.
 
 ![](7.02.jpg)
+Figure 6.02: Identifying time lag travel patterns using gps data Name vs Timestamp 
+
 
 Some time lag patterns were spotted across the following employees.
 
@@ -1033,7 +1085,7 @@ tm_shape(bgmap) +
 
 i. Lucas Alcazar.IT Technician’s travel pattern seems erratic, frequenting the same places but taking various routes. Some routes are more frequented (darker lines) compared to others. For example, his travels to Kronos Mart was not as frequent as the other routes. Some routes do not seem to fall on roads. 
 ![](7.03.jpg)
-
+Figure 6.03: Map of Lucas Alcazar's travel pattern using gps
 
 
 
@@ -1043,7 +1095,7 @@ i. Lucas Alcazar.IT Technician’s travel pattern seems erratic, frequenting the
 ii. Kare Orilla.Drill Technician’s travel pattern is glaring. The lines are darker indicating a higher car usage. At the same time, the gps pattern shows erratic driving. It is interesting to note that the car never went to the Gastech office. In addition, the car travels to the certain areas where there are no landmarks, only to make a U-turn, as indicated on the map
 
 ![](7.04.jpg)
-
+Figure 6.04: Map of Kare Orilla's travel pattern using gps
 
 
 
@@ -1052,7 +1104,7 @@ ii. Kare Orilla.Drill Technician’s travel pattern is glaring. The lines are da
 iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Manager’s car went to the hotel and left from the hotel. In addition, the second map below - Orhan Strum.SVP/COO car’s gps seems to indicate that it went to the hotel, taking various ingresses and egresses.
 
 ![](7.05.jpg)
-
+Figure 6.05: Map of Linnea's travel pattern using gps
 
 
 
@@ -1060,7 +1112,7 @@ iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Mana
 
 
 ![](7.06.jpg)
-
+Figure 6.06: Map of Orhan's travel pattern using gps
 
 
 
@@ -1069,7 +1121,7 @@ iii. Visit to the hotel – The first map shows that Linnea Bergen.IT Group Mana
 iv. Travel to the golf place: Edvard Vann/Perimeter Control , Felix Balas/Engineer, Sten Sanjorge Jr/CEO, and Felix Resumir/Security Group Manager’s gps show that they visited the golf course. Thier travel patterns have the same travel line to the golf course. 
 
 ![](7.07.jpg)
-
+Figure 6.07: Map of Edvard's travel pattern using gps
 
 
 
@@ -1079,16 +1131,24 @@ iv. Travel to the golf place: Edvard Vann/Perimeter Control , Felix Balas/Engine
 v. Isia Vann/Perimeter Control (first image) and Bertrand Ovan/Facilities Group Manager (second image) have almost identical travel patterns. 
 
 ![](7.08.jpg)
+Figure 6.08: Map of Isia's travel pattern using gps
 
 
 ![](7.09.jpg)
+Figure 6.09: Map of Betrand's travel pattern using gps
+
 
 vi. Axel Calzas.Hydraulic Technician (first image) and Vira Frente.Hydraulic Technician (second image) have similar travel patterns
 
 ![](7.10.jpg)
 
+Figure 6.10: Map of Axel's travel pattern using gps
+
+
 
 ![](7.11.jpg)
+
+Figure 6.11: Map of Frente's travel pattern using gps
 
 
 vii. No car goes to the airport. Interestingly, despite expenditure recorded at the airport, and the airport being a distance away from Gastech, there are no records of travel to the airport.
@@ -1173,7 +1233,7 @@ V(cc_graph)$color <- ifelse(V(cc_graph)$type, "lightblue", "salmon")
 V(cc_graph)$shape <- ifelse(V(cc_graph)$type, "circle", "square")
 E(cc_graph)$color <- "lightgray"
 
-bi_plot <-plot(cc_graph, vertex.label.cex = 0.8, vertex.label.color = "black") + geom_text_repel()
+bi_plot <-plot(cc_graph, vertex.label.cex = 0.8, vertex.label.color = "black") + geom_text_repel() 
 
 ```
 
@@ -1204,6 +1264,11 @@ cc_nodes1$id <- as.integer(cc_nodes1$id)
 
 glimpse(cc_nodes1)
 
+cc_nodes1 <- cc_nodes1 %>%
+  rename(group = POI)
+
+
+
 visNetwork(cc_nodes1,cc_edges) %>%
 visIgraphLayout(layout = "layout_with_fr") %>%
 visLegend() %>%
@@ -1225,6 +1290,8 @@ i. Hotel
 
 ![](8.01.jpg)
 
+Figure 7.01: Zoom in on relationship of nodes for Chostus Hotel
+
 From this, the relationships (official or unofficial) are seen. 
 Cc 5010, 2540 and 9683 went to the hotel. In addition, 5010 was also one of the employees who went to the Golf Course.
 
@@ -1234,6 +1301,7 @@ ii. Airport - Scrapyard Relationships
 
 
 ![](8.02.jpg)
+Figure 7.02: Zoom in on relationship of nodes for Airport and Scrapyard
 
 
 The employee who visited the scrapyard, 2276, also visited the airport. Both these locaions have contentious spending. It is useful to note the other employees who visited the airport as well, as they all may be connected (cc 5642, 9220, 9614 and 3506).
@@ -1246,6 +1314,8 @@ iii. Relationships at the Golf Course
 
 
 ![](8.03.jpg)
+Figure 7.03: Zoom in on relationship of nodes for Golf Course
+
 
 cc 8332, 7688, 8156, 2463 and 5010 are linked to the Golf Course and may have a relationship. Given the contentious activity at the hotel, all the employees who hold these credit cards should be questioned. 
 
@@ -1345,13 +1415,13 @@ From the heatmap the cc numbers were picked up based on the unusual high expendi
 Card Number | Suspicious Activities/ Trends                                          | Suspicious because of                 |Location            |
 ------------|------------------------------------------------------------------------|---------------------------------------|--------------------|
 9152| *Pattern:* Spends once a week at Nationwide Refinery then at Stewart and Son’s Fabrication. *Dates:* 8th Jan and 15th Jan. *Timing:* 0950 – 10am and 1118 to 1120am respectively. *Amount:* ~4500 - ~$1700 - ~$1900 - ~$4500. *Note:* Does not spend anywhere else in Kronos | Pattern and amounts spent. In addition, no other spending in Kronos| Nationwide Refinery, Stewart and Son’s Fabrication |
-7792| *Pattern*: At Carlyle Chemical, employee spends at least once in the morning between 930 to 10 am. Before employee’s afternoon expenditure at Carlyle’s, he goes to Katerina Cafe. Employee’s expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon. *Dates: *At Carlyle -  All weekdays less Monday and Friday  At Refinery – Tuesday, Thursday, Tuessday, Wednesday, Thursday *Timing: *Once in the morning, once in the afternoon *Amount:*  Big variation between ~$500 - ~$4000 *Note: *Does not spend anywhere else in Kronos||Carlyle Chemical and Nationwide Refinery|
+7792| *Pattern*: At Carlyle Chemical, employee spends at least once in the morning between 930 to 10 am. Before employee’s afternoon expenditure at Carlyle’s, he goes to Katerina Cafe. Employee’s expenditure at the Refinery varies, sometimes spending in the morning and others in the afternoon. *Dates: *At Carlyle -  All weekdays less Monday and Friday  At Refinery – Tuesday, Thursday, Tuessday, Wednesday, Thursday *Timing: *Once in the morning, once in the afternoon *Amount:*  Big variation between ~$500 - ~$4000 *Note: *Does not spend anywhere else in Kronos| Big variation in spending and frequency|Carlyle Chemical and Nationwide Refinery|
 6816|*Pattern:* Spends regularly at the cafes, eating out a lot, being at places like Katerina’s, Guy’s and Brew’ve Been Served during breakfast, lunch and dinner timings.| | |
 8332| Spent $150 at the Kronos mart at 3:48am. This is a strange time to spend that much at a mart.| Timing of high expenditure at mart| Kronos Mart|
-9735| *Pattern:* Daily spending at Nationwide Refinery before spending at Stewart’s. *Timing:* Consistently - ~10am at the refinery and ~1130 at the Stewart’s *Amount:* Between ~ $600 - $4000 Daily expenditure that has a larger amount variation and consistency of spending| Nationwide Refinery, Stewart and Son’s Fabrication|
+9735| *Pattern:* Daily spending at Nationwide Refinery before spending at Stewart’s. *Timing:* Consistently - ~10am at the refinery and ~1130 at the Stewart’s *Amount:* Between ~ $600 - $4000 Daily expenditure that has a larger amount variation and consistency of spending|Big variation and frequency of spending| Nationwide Refinery, Stewart and Son’s Fabrication|
 8642| *Pattern:* Spending twice each day between ~$200 - ~$4000 *Timing:* 12-1pm and 3-5pm *Dates:* Monday to Thursday on both weeks (6th -9th and 13th – 16th)| Spending pattern and high expenditure at the airport| Airport|
 2276| *Pattern: *Starts spending on Tuesdays and Thursday by going to the Airport -> Scrapyard -> Stewart and Sons -> Refinery. *Timing:* Tuesday and Thursday on both weeks *Amount: *Varies between ~$800 - ~$4000| Spending pattern and consistency and high amounts at each location|Airport, Nationwide Refinery, Stewart and Son’s Fabrication, Aliba Scrapyard|
-2540, 9683 and 5010| *Pattern:* Send almost within half an hour to each other in the early afternoon between ~1240 – ~1315 An outlier expenditure – 5010- spend on 18th Jan (Saturday) at 12pm, a day after 9683 and 2540.| |Chostus Hotel|
+2540, 9683 and 5010| *Pattern:* Spent almost within half an hour to each other in the early afternoon between ~1240 – ~1315 An outlier expenditure – 5010- spend on 18th Jan (Saturday) at 12pm, a day after 9683 and 2540.| Consistency of the time difference in expenditure between 2 persons|Chostus Hotel|
 
 
 
@@ -1390,7 +1460,7 @@ In addition to the above-mentioned anomalies, the following were noted:
 
 -	Spending on credit card on the same day, but a lower expenditure amount recoded on loyalty card. This will appear under the non-relationships from i) above. To explore this, seek to understand if there are certain locations that only record a proportion of the expenditure on loyalty cards (this is common, where loyalty cards capture only 20% of the expenditure).
 
--	Outlier expenditure at locations such as the at the Airport and Hotel fall outside the nor. These anomalies should be evaluated separately. Specifically, i) removing the outliers to investigate them separately; and ii) investigating the data without the outliers. This will help flesh out other more than usual expenditure. The current outliers create a boxplot that flesh out the outliers that shadow other more than usual expenditures.
+-	Outlier expenditure at locations such as the at the Airport and Hotel fall outside the norm. These anomalies should be evaluated separately. Specifically, i) removing the outliers to investigate them separately; and ii) investigating the data without the outliers. This will help flesh out other more than usual expenditure. The current outliers create a boxplot that flesh out the outliers that shadow other more than usual expenditures.
 
 
 
@@ -1414,18 +1484,27 @@ Given the travel data,
 
 Some discrepancies noted from the above are:
 
--	Expenditure: Cc expenditure is higher than loyalty card at some places. Some places where expenditure occurred, had no gps data.
+-	Expenditure: Cc expenditure is higher than loyalty card at some places. Some places where expenditure occurred, had no gps data, for example, the airport.
 
 -	Timings: The places visited, and respective timings of purchase differ across cc and loyalty data. In addition, the gps data does not indicated which places were visited. The gap difference data differs from some of the timings the places were visited.
 
 
+
+
+![](9.15.jpg)
+
+
+This method has uncertainties. Depending on visual data to understand if the location is visited raises questions. Specifically, it is not possible to tell if the person really spent at the location or was just visiting. Moreover, if the person actually made a stop at the location or was just passing through.
+The time lag data also raises its own questions, for example, is 10 minutes sufficient to gauge a stop? Was the owner of the car driving the car or was someone else driving the car. These are not clear at this juncture.
+
+Uncertainty in data  include the accuracy of the gps data. For example, while the airport was a location that had expenditure, no vehicles visited the airport. Could it be that the some vehicles had spoilt devices? In addition, some signals from the data maybe missing due to connectivity, as such the data is not complete. There is also uncertainty if loyalty card data only captures a portion of the expenditure, which is common for retail outlets as a means of rewarding points.
 
 c. Inferring Owners of CC and Loyalty Card
 
 The following code chunk was used to merge loyalty and credit card data on price, location and date. 
 This produced a data set that matches the credit card to loyalty card number. The rows not in the data set are non-matches.
 
-The method does have some drawbacks. For example, it the loyalty card has no time stamp. On that note, it is not entirely accurate to match the prices based on location. Some employees may have bought items without using a credit card but used the loyalty card. 
+The method does have some drawbacks. For example, the loyalty card has no time stamp. On that note, it is not entirely accurate to match the prices based on location. Some employees may have bought items without using a credit card but used the loyalty card. 
 
 ```{r fig.width=40, fig.height=20}
 loyalty_cc_merge <- merge(loyalty_clean, credit_card_split, by.x=c("price","location","timestamp"), by.y=c("price", "location", "year"))
@@ -1446,12 +1525,7 @@ ggplotly(l_cc)
 ```
 
 
-![](9.15.jpg)
 
-This method has uncertainties. Depending on visual data to understand if the location is visited raises questions. Specifically, it is not possible to tell if the person really spent at the location or was just visiting. Moreover, if the person actually made a stop at the location or was just passing through.
-The time lag data also raises its own questions, for example, is 10 minutes sufficient to gauge a stop? Was the owner of the car driving the car or was someone else driving the car. These are not clear at this juncture.
-
-Uncertainty in data  include the accuracy of the gps data. For example, while the airport was a location that had expenditure, no vehicles visited the airport. Could it be that the some vehicles had spoilt devices? In addition, some signals from the data maybe missing due to connectivity, as such the data is not complete. There is also uncertainty if loyalty card data only captures a portion of the expenditure, which is common for retail outlets as a means of rewarding points.
 
 
 d. Relationships offcial or unofficial 
@@ -1498,3 +1572,11 @@ For avoidance of doubt, a summarized list is provided below:
 
 - Frydos Autosupply: Outlier of $10,000 in expenditure
 
+
+
+
+10. Future Work
+
+There are limitations to the work done above. The most glaring limitation is that the user is unable to smoothly interact with the visuals. It could be better to wrap the project in a Shiny application. This will be done in the following part of the project.
+
+On reflection of using R for visualisation, the challenge for creating the visual and rendering on a webpage is getting the size of the pictures and charts right. In addition, looking for the appropriate code chunks to use. The internet is filled with many approaches to using R and packages, but not all are appropriate or usable in every scenario. To that end, practice is the only way and constantly working on R to hone the skill and build the knowledge. 
