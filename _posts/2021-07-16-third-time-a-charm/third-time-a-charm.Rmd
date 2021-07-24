@@ -271,7 +271,8 @@ Employee_travel$NameTitle <- paste(Employee_travel$Name, Employee_travel$Current
 glimpse(Employee_travel)
 ```
 
-###ime to get a sense of what was happening!!!
+### Time to get a sense of what was happening!!!
+
 
 ### 5. Exploring Credit Card data
 
@@ -463,6 +464,7 @@ There is trend of places visited. The card holder starts spending on Tuesdays an
 
 - At Albert’s Fine Clothing
 ![](5.08.jpg) 
+
 Figure 4.08: Datatable view of Albert's Fine Clothing
 
 
@@ -471,6 +473,7 @@ Another contentious location. Spending at this place by employees mainly happens
 
 - Chostus Hotel 
 ![](5.09.jpg)
+
 Figure 4.09: Datatable view of cc spend at Chostus hotel
 
 Two employees with cc numbers 2540 and 9683 spent almost within half an hour to each other. An oulier – 5010- spent on 18th Jan at 12pm, a day after 9683 and 2540. 
@@ -478,6 +481,7 @@ Two employees with cc numbers 2540 and 9683 spent almost within half an hour to 
 
 - Frydos Autosupply n More 
 ![](5.10.jpg)
+
 Figure 4.10: Datatable view of cc spend at Frydos
 
 Majority of the cc spent were after 7pm, some as late as 920pm. Notable some spent at 3pm
@@ -743,7 +747,10 @@ This loyalty card holder has a pattern of travelling from Carlyle Chemical to Ka
 
 
 - L4063
+
+
 ![](6.04.jpg)
+
 Figure 5.04: Datatable view of L4063 loyalty card spend
 
 
@@ -760,7 +767,7 @@ Figure 5.05: Datatable view of loyalty card spend at Carlyle Chemical
 
 Comparing this to the credit card data: 
 ![](6.05.jpg)
-Figure 5.05: Datatable view of cc spend at Carlyle Chemical
+Figure 5.06: Datatable view of cc spend at Carlyle Chemical
 
 
 The data tables highlight the credit card expenditure. It is observed that given the price, cc 9220 seems to own L4063. cc 7792 linked to L5756, cc4530 linked to L8477. However, 7792 spent $4803 on 7th afternoon but did not use the loyalty card. We are suspicious of this!
@@ -1085,6 +1092,7 @@ tm_shape(bgmap) +
 
 i. Lucas Alcazar.IT Technician’s travel pattern seems erratic, frequenting the same places but taking various routes. Some routes are more frequented (darker lines) compared to others. For example, his travels to Kronos Mart was not as frequent as the other routes. Some routes do not seem to fall on roads. 
 ![](7.03.jpg)
+
 Figure 6.03: Map of Lucas Alcazar's travel pattern using gps
 
 
@@ -1095,6 +1103,7 @@ Figure 6.03: Map of Lucas Alcazar's travel pattern using gps
 ii. Kare Orilla.Drill Technician’s travel pattern is glaring. The lines are darker indicating a higher car usage. At the same time, the gps pattern shows erratic driving. It is interesting to note that the car never went to the Gastech office. In addition, the car travels to the certain areas where there are no landmarks, only to make a U-turn, as indicated on the map
 
 ![](7.04.jpg)
+
 Figure 6.04: Map of Kare Orilla's travel pattern using gps
 
 
@@ -1330,7 +1339,6 @@ The most popular locations are i) Katerina Cafe; ii) Hippokampos; iii) Guy’s G
 Brew’ve Been Served
 
 
-They are popular at the following timings:
 
 To understand the popular timings, credit card data was used.
 The credit card data was split to days and timings using the following code chunk
@@ -1385,7 +1393,7 @@ The following anomalies were observed. The first boxplot image is for credit car
 ![](9.07.jpg)
 
 
-Boxplot were used to check for anomalies. The boxplots were plotted for cc number against price. From this, the following anomalies were detected.
+Boxplots were used to check for anomalies. The boxplots were plotted for cc number against price. From this, the following anomalies were detected.
 
 - The Airport was visited by 5 different persons making multiple purchases over two weeks, spending largely between $1000 - $5000. The large expenditure over a short time span makes us suspicious.
 
@@ -1517,7 +1525,7 @@ l_cc <- ggplot(loyalty_cc_merge) +
   labs(
     x = "Credit Card",
     y = "Loyalty Card",
-    title = "Credit Card vs Loyalty Card ") +
+    title = "Matching of Credit Card (x-axis) to Loyalty Card Number (y-axis") +
   theme_minimal() +
   facet_wrap(vars(timestamp))
 
@@ -1575,8 +1583,14 @@ For avoidance of doubt, a summarized list is provided below:
 
 
 
-10. Future Work
+10. Improvements and Future Work
 
-There are limitations to the work done above. The most glaring limitation is that the user is unable to smoothly interact with the visuals. It could be better to wrap the project in a Shiny application. This will be done in the following part of the project.
+Improvements could be done specifically for displaying the graphs. Getting the fit of each chart and picture was challenging. Patchwork library could be used in the future. In addition, using push force for nodes display.
 
-On reflection of using R for visualisation, the challenge for creating the visual and rendering on a webpage is getting the size of the pictures and charts right. In addition, looking for the appropriate code chunks to use. The internet is filled with many approaches to using R and packages, but not all are appropriate or usable in every scenario. To that end, practice is the only way and constantly working on R to hone the skill and build the knowledge. 
+In addition to the challenge of displaying charts nicely, the user is unable to smoothly interact with the visuals. It could be better to wrap the project in a Shiny application. This will be done in the following part of the project.
+
+On reflection of using R for visualisation, the challenge for creating the visual and rendering on a webpage is getting the size of the pictures and charts right. In addition, looking for the appropriate code chunks to use. The internet is filled with many approaches to using R and packages, but not all are appropriate or usable in every scenario. The formatting of text in Rmd is also not as intuitive, for example, creating of tables quikcly and aligning chapters and paragraphs. To that end, practice is the only way and constantly working on R to hone the skill and build the knowledge.
+
+This project has been extremely useful to ramp up learning coding for data visualisation in R.
+
+
